@@ -1,16 +1,25 @@
 <template>
   <div>
-    <h1>BLOG</h1>
-    <login-form></login-form>
+    <app-header v-if="isUserLogin"></app-header>
+    <div>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import mainPage from '@/components/views/mainPage.vue';
-import LoginForm from './components/LoginForm.vue';
+import AppHeader from './components/common/AppHeader.vue';
 export default {
-  components: { LoginForm },
+  components: {
+    AppHeader,
+  },
+  computed: {
+    isUserLogin() {
+      return this.$store.getters.isLogin;
+    },
+  },
 };
 </script>
-
-<style></style>
+<style>
+@import './css/reset.css';
+</style>

@@ -6,18 +6,11 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import { loginUser } from '@/service/auth';
 export default {
   methods: {
     login() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(result => {
-          console.log('로그인 성공', result);
-        })
-        .catch(error => console.log('로그인 실패 ', error));
+      loginUser();
     },
   },
 };
