@@ -20,8 +20,8 @@ const router = new VueRouter({
     },
     {
       path: '/main',
+      name: 'AuthMain',
       component: () => import('@/views/MainPage.vue'),
-      meta: { auth: true },
     },
   ],
 });

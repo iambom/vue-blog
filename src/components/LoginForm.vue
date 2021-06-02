@@ -6,8 +6,12 @@
 </template>
 
 <script>
-import { loginUser } from '@/service/auth';
+import { loginUser, onAuthChange } from '@/service/auth';
 export default {
+  created() {
+    onAuthChange();
+    console.log('왜 자꾸');
+  },
   methods: {
     login() {
       loginUser();

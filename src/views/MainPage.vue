@@ -3,7 +3,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'AuthMain',
+  created() {
+    console.log(this.$route.params.uid);
+  },
+};
 </script>
 
 <style></style>

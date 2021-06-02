@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     username: '',
     profileImage: '',
+    uid: '',
   },
   getters: {
     isLogin(state) {
@@ -20,8 +21,17 @@ export default new Vuex.Store({
     setProfileImage(state, profileImage) {
       state.profileImage = profileImage;
     },
+    setUid(state, uid) {
+      state.uid = uid;
+    },
     clearUsername(state) {
       state.username = '';
+    },
+    cleartProfileImage(state) {
+      state.profileImage = '';
+    },
+    clearUid(state) {
+      state.uid = '';
     },
   },
 });
