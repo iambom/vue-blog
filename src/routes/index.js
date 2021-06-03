@@ -23,6 +23,10 @@ const router = new VueRouter({
       name: 'AuthMain',
       component: () => import('@/views/MainPage.vue'),
     },
+    {
+      path: '/add',
+      component: () => import('@/views/PostAddPage.vue'),
+    },
   ],
 });
 

@@ -59,5 +59,8 @@ export default new Vuex.Store({
     clearUid(state) {
       state.uid = '';
     },
+    addPostItem(state, newItem) {
+      state.items.push(newItem);
+    },
   },
 });
