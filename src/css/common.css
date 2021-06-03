@@ -1,0 +1,56 @@
+
+/*--- LAYOUT ---*/
+.app-contents {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 100%;  
+  }
+
+/*--- LIST ---*/
+.list-container {
+	padding-top: 13px;
+}
+.list-container li{
+    width: 100%;
+    border-bottom: 1px solid rgb(235, 234, 234);
+	border-radius: 3px;
+    padding: 10px 10px 15px;
+    margin-bottom: 10px;
+}
+.list-container li .user-info{
+    display: flex;
+
+}
+.list-container li .user-info > div{
+    margin-right: 10px;
+}
+.list-container li .user-info .img-wrap{
+    margin-top: 5px;
+}
+.list-container li .user-info img{
+    display: block;
+    width:100%;
+    max-width: 36px;
+    border-radius: 50%;
+}
+.list-container li .user-info span{
+    display: block;
+}
+.list-container li .user-info .publishedAt {
+    color:rgb(121, 121, 121);
+    font-size: 0.9rem;
+}
+.list-container li .title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+.list-container li .contents{
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
