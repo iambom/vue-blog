@@ -11,6 +11,14 @@
     </div>
     <p class="title">{{ postItem.title }}</p>
     <p class="contents">{{ postItem.contents }}</p>
+    <div class="btn-wrap">
+      <button class="btn-edit" @click="editItem">
+        <i class="far fa-edit"></i>
+      </button>
+      <button class="btn-delete" @click="deleteItem">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </div>
   </li>
 </template>
 
@@ -20,6 +28,16 @@ export default {
     postItem: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    editItem() {
+      console.log();
+    },
+    deleteItem() {
+      if (confirm('삭제하시겠습니까?')) {
+        this.$store.commit('deleteItem', this.postItem);
+      }
     },
   },
 };

@@ -33,6 +33,7 @@
 	border-radius: 3px;
     padding: 10px 10px 15px;
     margin-bottom: 10px;
+    position:relative;
 }
 .list-container li .user-info{
     display: flex;
@@ -69,6 +70,16 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+.btn-wrap{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+.btn-wrap button{
+    background: none;
+    border: none;
+    color: gray
 }
 
 /*--- FORM ---*/

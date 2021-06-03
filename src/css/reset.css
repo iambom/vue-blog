@@ -30,7 +30,9 @@ textarea {
 li {
 	list-style: none;
 }
-
+a{
+	text-decoration: none;
+}
 button {
 	font-family: inherit;
 	font-size: 90%;
@@ -39,8 +41,7 @@ button {
 }
 
 *,
-*:after,
-*:before {
+*:after{
 	box-sizing: border-box;
 	font-family: 'Spoqa Han Sans', 'Sans-serif';
 }

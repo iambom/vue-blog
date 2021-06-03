@@ -8,8 +8,8 @@
         :postItem="postItem"
       ></post-list-item>
     </ul>
-    <router-link to="/add" class="create-button"
-      ><i class="ion-md-add"></i
+    <router-link to="/add" class="create-button">
+      <i class="fas fa-plus"></i
     ></router-link>
   </div>
 </template>
