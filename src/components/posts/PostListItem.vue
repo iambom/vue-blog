@@ -32,7 +32,8 @@ export default {
   },
   methods: {
     editItem() {
-      console.log();
+      const id = this.postItem.id;
+      this.$router.push(`/post/${id}`);
     },
     deleteItem() {
       if (confirm('삭제하시겠습니까?')) {
