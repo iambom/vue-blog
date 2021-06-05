@@ -5,9 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    username: '',
-    profileImage: '',
-    uid: '',
+    user: null,
     items: [
       {
         id: '1',
@@ -44,27 +42,19 @@ export default new Vuex.Store({
   },
   getters: {
     isLogin(state) {
-      return state.username !== '';
+      return state.user !== null;
     },
   },
   mutations: {
-    setUsername(state, username) {
-      state.username = username;
+    setUser(state, payload) {
+      state.user = {
+        username: payload.username,
+        profileImage: payload.profileImage,
+        uid: payload.uid,
+      };
     },
-    setProfileImage(state, profileImage) {
-      state.profileImage = profileImage;
-    },
-    setUid(state, uid) {
-      state.uid = uid;
-    },
-    clearUsername(state) {
-      state.username = '';
-    },
-    cleartProfileImage(state) {
-      state.profileImage = '';
-    },
-    clearUid(state) {
-      state.uid = '';
+    clearUser(state) {
+      state.user = null;
     },
     addPostItem(state, newItem) {
       state.items.push(newItem);

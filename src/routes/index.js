@@ -7,12 +7,8 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '*',
-      redirect: '/login',
-    },
-    {
       path: '/',
-      redirect: '/login',
+      redirect: '/main',
     },
     {
       path: '/login',

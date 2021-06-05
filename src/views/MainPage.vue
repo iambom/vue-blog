@@ -24,7 +24,6 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.params.uid);
     this.postItems = this.$store.state.items;
     console.log(this.postItems);
   },

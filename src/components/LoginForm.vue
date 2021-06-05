@@ -6,11 +6,12 @@
 </template>
 
 <script>
-import { loginUser, onAuthChange } from '@/service/auth';
+import { loginUser } from '@/service/auth';
 export default {
-  created() {
-    onAuthChange();
-    console.log('왜 자꾸');
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin;
+    },
   },
   methods: {
     login() {

@@ -8,14 +8,12 @@ function loginUser() {
     .auth()
     .signInWithPopup(provider)
     .then(result => {
-      console.log('로그인 성공', result);
-      console.log('UID', result.user.uid);
-      store.commit('setUsername', result.additionalUserInfo.profile.name);
-      store.commit(
-        'setProfileImage',
-        result.additionalUserInfo.profile.picture,
-      );
-      store.commit('setUid', result.user.uid);
+      const userData = {
+        username: result.additionalUserInfo.profile.name,
+        uid: result.user.uid,
+        profileImage: result.additionalUserInfo.profile.picture,
+      };
+      store.commit('setUser', userData);
       router.push({
         path: 'main',
         name: 'AuthMain',
@@ -30,22 +28,27 @@ function loginUser() {
 
 function logoutUser() {
   firebase.auth().signOut();
-  store.commit('clearUsername');
-  store.commit('cleartProfileImage');
-  store.commit('clearUid');
+  store.commit('clearUser');
 }
 
 function onAuthChange() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      router.push({
-        path: 'main',
-        name: 'AuthMain',
-        params: {
-          uid: user.uid,
-        },
-      });
-      store.commit('setUsername', user.displayName);
+      // 로그인 된 경우
+      const userData = {
+        username: user.displayName,
+        uid: user.uid,
+        profileImage: user.photoURL,
+      };
+      store.commit('setUser', userData);
+      if (router.currentRoute.path === '/login') {
+        router.push('/main');
+      }
+    } else {
+      // 로그인 하지 않은 경우
+      if (router.currentRoute.path !== '/login') {
+        router.push('/login');
+      }
     }
   });
 }

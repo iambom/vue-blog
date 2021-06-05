@@ -8,10 +8,14 @@
 </template>
 
 <script>
+import { onAuthChange } from '@/service/auth';
 import AppHeader from './components/common/AppHeader.vue';
 export default {
   components: {
     AppHeader,
+  },
+  created() {
+    onAuthChange();
   },
   computed: {
     isUserLogin() {
