@@ -37,18 +37,14 @@ export default {
   },
   methods: {
     submitForm() {
-      const id = this.$route.params.id;
       if (this.title && this.contents !== '') {
-        const date = new Date();
-        const publishedAt = `${date.getFullYear()}. ${
-          date.getMonth() + 1
-        }. ${date.getDate()}`;
+        const { id, name, publishedAt } = this.$store.state.postItem;
         const editItem = {
-          id: this.$store.state.postItem.id,
+          id: id,
           title: this.title,
           contents: this.contents,
-          name: this.$store.state.postItem.name,
-          publishedAt,
+          name: name,
+          publishedAt: publishedAt,
         };
         this.$store.commit('saveEditItem', { editItem, id });
         this.$router.push('/main');

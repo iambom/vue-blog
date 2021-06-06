@@ -1,4 +1,9 @@
-
+/*--- HEADER ---*/
+header {
+    min-height: 70px;
+    padding : 0 10px;
+    margin-bottom: 15px;
+}
 /*--- LAYOUT ---*/
 .app-contents {
     max-width: 1020px;
@@ -24,9 +29,9 @@
 }  
 
 /*--- LIST ---*/
-.list-container {
+/* .list-container {
 	padding-top: 13px;
-}
+} */
 .list-container li{
     width: 100%;
     border-bottom: 1px solid rgb(235, 234, 234);
@@ -125,7 +130,7 @@
 
 /*--- POST READ ---*/
 .read-container{
-    padding: 0 10px;
+    padding: 0 20px;
 }
 .read-container .title{
     font-size: 1.4rem;

@@ -1,5 +1,5 @@
 <template>
-  <div class="app-contents">
+  <div>
     <app-header v-if="isUserLogin"></app-header>
     <div>
       <router-view></router-view>

@@ -67,9 +67,9 @@ export default new Vuex.Store({
     addPostItem(state, newItem) {
       state.items.push(newItem);
     },
-    deleteItem(state, postItem) {
-      const index = state.items.findIndex(i => i === postItem);
-      state.items.splice(index, 1);
+    deleteItem(state, id) {
+      const obj = state.items.filter(item => item.id !== id);
+      state.items = obj;
     },
   },
 });

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h2>Main Page</h2>
+  <div class="app-contents">
     <ul class="list-container">
       <post-list-item
         v-for="postItem in postItems"
@@ -25,7 +24,6 @@ export default {
   },
   created() {
     this.postItems = this.$store.state.items;
-    console.log(this.postItems);
   },
   components: {
     PostListItem,
