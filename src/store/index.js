@@ -32,7 +32,7 @@ export default new Vuex.Store({
         publishedAt: '2021. 6. 1',
       },
     ],
-    editItem: {
+    postItem: {
       id: '',
       name: '',
       title: '',
@@ -56,21 +56,20 @@ export default new Vuex.Store({
     clearUser(state) {
       state.user = null;
     },
+    getPostItem(state, id) {
+      const obj = state.items.filter(item => item.id === id)[0];
+      state.postItem = obj;
+    },
+    saveEditItem(state, payload) {
+      const index = state.items.findIndex(i => i.id === payload.id);
+      state.items.splice(index, 1, payload.editItem);
+    },
     addPostItem(state, newItem) {
       state.items.push(newItem);
     },
     deleteItem(state, postItem) {
       const index = state.items.findIndex(i => i === postItem);
       state.items.splice(index, 1);
-    },
-    getEditItem(state, id) {
-      const obj = state.items.filter(item => item.id === id)[0];
-      console.log(obj);
-      state.editItem = obj;
-    },
-    saveEditItem(state, payload) {
-      const index = state.items.findIndex(i => i.id === payload.id);
-      state.items.splice(index, 1, payload.editItem);
     },
   },
 });

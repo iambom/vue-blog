@@ -25,7 +25,8 @@ const router = new VueRouter({
     },
     {
       path: '/post/:id',
-      component: () => import('@/views/PostEditPage.vue'),
+      name: 'Post',
+      component: () => import('@/views/PostPage.vue'),
     },
   ],
 });

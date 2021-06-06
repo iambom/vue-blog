@@ -30,13 +30,13 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    this.$store.commit('getEditItem', id);
-    this.title = this.$store.state.editItem.title;
-    this.contents = this.$store.state.editItem.contents;
+    this.$store.commit('getPostItem', id);
+    const { title, contents } = this.$store.state.postItem;
+    this.title = title;
+    this.contents = contents;
   },
   methods: {
     submitForm() {
-      console.log(this.$store.state.editItem);
       const id = this.$route.params.id;
       if (this.title && this.contents !== '') {
         const date = new Date();
@@ -44,13 +44,12 @@ export default {
           date.getMonth() + 1
         }. ${date.getDate()}`;
         const editItem = {
-          id: this.$store.state.editItem.id,
+          id: this.$store.state.postItem.id,
           title: this.title,
           contents: this.contents,
-          name: this.$store.state.editItem.name,
+          name: this.$store.state.postItem.name,
           publishedAt,
         };
-        console.log('수정 ', editItem);
         this.$store.commit('saveEditItem', { editItem, id });
         this.$router.push('/main');
       }

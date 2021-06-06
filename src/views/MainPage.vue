@@ -1,5 +1,5 @@
 <template>
-  <div class="app-contents">
+  <div>
     <h2>Main Page</h2>
     <ul class="list-container">
       <post-list-item
