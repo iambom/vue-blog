@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-contents">
     <app-header v-if="isUserLogin"></app-header>
     <div>
       <router-view></router-view>
@@ -16,6 +16,7 @@ export default {
   },
   created() {
     onAuthChange();
+    console.log(this.$store.state.user.profileImage);
   },
   computed: {
     isUserLogin() {

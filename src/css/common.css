@@ -1,32 +1,63 @@
-/*--- HEADER ---*/
-header {
-    min-height: 70px;
-    padding : 0 10px;
-    margin-bottom: 15px;
-}
 /*--- LAYOUT ---*/
+body{
+
+    background-color: rgb(245, 245, 245);
+}
 .app-contents {
     max-width: 1020px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 20px;
     width: 100%;  
     position: relative;
 }
-.create-button {
-    width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	position: fixed;
-	right: 20px;
-	bottom: 70px;	
-    display: flex;
-	align-items: center;
-	justify-content: center;
-	color: white;
+
+/*--- HEADER ---*/
+header {
+    min-height: 150px;
+    margin-bottom: 15px;
+    position: relative;
+}
+header .img-wrap {
+    text-align: right;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+header img{
+    width: 48px;
+    border-radius: 50%;
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    background-color: #42b983;
-	border: 3px solid white;
-}  
+	border: 3px solid rgb(228, 228, 228);
+}
+header .btn-logout {
+    position: absolute;
+    right: 0;
+    display: none;
+}
+header .username{
+    padding-left: 10px;
+}
+header .username span {
+    font-weight: bold;
+}
+header .create-button-wrap {
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+header .create-button{
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    color: gray;
+}
+header .create-button div i {
+    position: relative
+}
+header .create-button span{
+    position: absolute;
+    top: -3px;
+    left: 2px;
+}
 
 /*--- LIST ---*/
 /* .list-container {
@@ -34,11 +65,12 @@ header {
 } */
 .list-container li{
     width: 100%;
-    border-bottom: 1px solid rgb(235, 234, 234);
-	border-radius: 3px;
-    padding: 10px 10px 15px;
-    margin-bottom: 10px;
+    padding: 15px;
+    margin: 10px 0 20px;
     position:relative;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+	border-radius: 10px;
+    background-color: #fff;
 }
 .list-container li .user-info{
     display: flex;
@@ -75,16 +107,6 @@ header {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-}
-.btn-wrap{
-    position: absolute;
-    top: 20px;
-    right: 10px;
-}
-.btn-wrap button{
-    background: none;
-    border: none;
-    color: gray
 }
 
 /*--- FORM ---*/
@@ -131,6 +153,7 @@ header {
 /*--- POST READ ---*/
 .read-container{
     padding: 0 20px;
+    position: relative;
 }
 .read-container .title{
     font-size: 1.4rem;
@@ -139,5 +162,15 @@ header {
 }
 .read-container .contents{
     margin-top: 10px;
+}
+.btn-wrap{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+.btn-wrap button{
+    background: none;
+    border: none;
+    color: gray
 }
 
