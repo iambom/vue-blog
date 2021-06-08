@@ -1,6 +1,5 @@
 <template>
   <div class="form-wrapper">
-    <h1>Edit Post</h1>
     <form class="form" @submit.prevent="submitForm">
       <div>
         <label for="title"></label>

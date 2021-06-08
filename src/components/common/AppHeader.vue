@@ -1,8 +1,14 @@
 <template>
   <header v-if="isUserLogin">
-    <div class="img-wrap">
+    <div class="img-wrap" @click="toggleButton">
       <img :src="profileImage" alt="profile" />
-      <button v-on:click="logout" class="btn-logout">Logout</button>
+      <button
+        @click="logout"
+        class="btn-logout"
+        :class="{ visible: visibleBtnLogout }"
+      >
+        로그아웃
+      </button>
     </div>
     <div>
       <p class="username">
@@ -25,6 +31,7 @@ export default {
     return {
       profileImage: this.$store.state.user.profileImage,
       username: this.$store.state.user.username,
+      visibleBtnLogout: false,
     };
   },
   computed: {
@@ -36,6 +43,11 @@ export default {
     logout() {
       logoutUser();
       this.$router.push('/login');
+    },
+    toggleButton() {
+      this.visibleBtnLogout
+        ? (this.visibleBtnLogout = false)
+        : (this.visibleBtnLogout = true);
     },
   },
 };

@@ -1,12 +1,11 @@
 /*--- LAYOUT ---*/
 body{
-
     background-color: rgb(245, 245, 245);
 }
 .app-contents {
     max-width: 1020px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 60px;
     width: 100%;  
     position: relative;
 }
@@ -32,6 +31,9 @@ header .btn-logout {
     position: absolute;
     right: 0;
     display: none;
+}
+header .btn-logout.visible{
+    display: block;
 }
 header .username{
     padding-left: 10px;
@@ -152,8 +154,9 @@ header .create-button span{
 
 /*--- POST READ ---*/
 .read-container{
-    padding: 0 20px;
+    padding: 30px 20px 50px;
     position: relative;
+    background-color: #fff;
 }
 .read-container .title{
     font-size: 1.4rem;
@@ -165,7 +168,7 @@ header .create-button span{
 }
 .btn-wrap{
     position: absolute;
-    top: 10px;
+    bottom: 10px;
     right: 20px;
 }
 .btn-wrap button{

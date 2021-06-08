@@ -42,7 +42,7 @@ export default {
           id,
           title: this.title,
           contents: this.contents,
-          name: this.$store.state.username,
+          name: this.$store.state.user.username,
           publishedAt,
         };
         this.$store.commit('addPostItem', newItem);
