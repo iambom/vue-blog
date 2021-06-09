@@ -41,12 +41,13 @@ function onAuthChange() {
         profileImage: user.photoURL,
       };
       store.commit('setUser', userData);
-      if (router.currentRoute.path === '/login') {
+      if (router.history.current.path === '/login') {
         router.push('/main');
       }
     } else {
       // 로그인 하지 않은 경우
-      if (router.currentRoute.path !== '/login') {
+      console.log('왜 안 나와', router);
+      if (router.history.current.path !== '/login') {
         router.push('/login');
       }
     }

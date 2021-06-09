@@ -10,13 +10,14 @@
 <script>
 import { onAuthChange } from '@/service/auth';
 import AppHeader from './components/common/AppHeader.vue';
+import LoadingSpinner from './components/common/LoadingSpinner.vue';
 export default {
   components: {
     AppHeader,
+    LoadingSpinner,
   },
   created() {
     onAuthChange();
-    console.log(this.$store.state.user.profileImage);
   },
   computed: {
     isUserLogin() {
