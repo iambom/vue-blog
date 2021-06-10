@@ -1,8 +1,12 @@
 <template>
-  <div class="app-contents">
-    <app-header v-if="isUserLogin"></app-header>
-    <div>
-      <router-view></router-view>
+  <div>
+    <loading-spinner v-if="isLoading"></loading-spinner>
+
+    <div class="app-contents" v-else>
+      <app-header v-if="isUserLogin"></app-header>
+      <div>
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -12,11 +16,22 @@ import { onAuthChange } from '@/service/auth';
 import AppHeader from './components/common/AppHeader.vue';
 import LoadingSpinner from './components/common/LoadingSpinner.vue';
 export default {
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   components: {
     AppHeader,
     LoadingSpinner,
   },
-  created() {
+  watch: {
+    isUserLogin(value) {
+      if (value !== null) this.isLoading = false;
+    },
+  },
+  mounted() {
+    this.isLoading = true;
     onAuthChange();
   },
   computed: {

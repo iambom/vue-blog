@@ -1,7 +1,6 @@
 <template>
   <div>
-    <loading-spinner v-if="isLoading"></loading-spinner>
-    <ul class="list-container" v-else>
+    <ul class="list-container">
       <post-list-item
         v-for="postItem in postItems"
         :key="postItem.id"
@@ -13,7 +12,7 @@
 
 <script>
 import PostListItem from '../components/posts/PostListItem.vue';
-import LoadingSpinner from '../components/common/LoadingSpinner.vue';
+import { syncData } from '@/service/repository';
 export default {
   name: 'AuthMain',
   data() {
@@ -23,13 +22,21 @@ export default {
     };
   },
   created() {
-    this.isLoading = true;
-    this.postItems = this.$store.state.items;
-    this.isLoading = false;
+    // this.isLoading = true;
+    const userId = this.$store.state.user.uid;
+    syncData(userId, data => {
+      console.log('syncDAta', data);
+      this.$store.state.items = { ...data };
+      this.postItems = this.$store.state.items;
+    });
   },
   components: {
     PostListItem,
-    LoadingSpinner,
+  },
+  computed: {
+    isUserLogin() {
+      return this.$store.getters.isLogin;
+    },
   },
 };
 </script>
