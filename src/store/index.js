@@ -40,20 +40,17 @@ export default new Vuex.Store({
     clearUser(state) {
       state.user = null;
     },
+    setItems(state, items) {
+      state.items = items;
+    },
     getPostItem(state, id) {
-      console.log('스토어 items ', state.items);
-      // const obj = state.items.filter(item => item.id === id)[0];
-      const obj = state.items.filter(item => {
-        console.log('필터 ', item);
-        // item.id === id;
-      });
-      console.log('스토어 obj', obj);
+      const obj = state.items.filter(item => item.id === id)[0];
       state.postItem = obj;
-      console.log('스토어 getPostItem ', state.postItem);
     },
     saveEditItem(state, payload) {
       const index = state.items.findIndex(i => i.id === payload.id);
       state.items.splice(index, 1, payload.editItem);
+      saveData(state.user.uid, payload.editItem);
     },
     addPostItem(state, newItem) {
       state.items.push(newItem);

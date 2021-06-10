@@ -22,12 +22,11 @@ export default {
     };
   },
   created() {
-    // this.isLoading = true;
     const userId = this.$store.state.user.uid;
     syncData(userId, data => {
-      console.log('syncDAta', data);
-      this.$store.state.items = { ...data };
-      this.postItems = this.$store.state.items;
+      let itemsArray = Object.values(data);
+      this.postItems = itemsArray;
+      this.$store.commit('setItems', this.postItems);
     });
   },
   components: {
