@@ -39,6 +39,8 @@ button {
 	font-size: 90%;
 	margin: 0;
 	cursor: pointer;
+	background: none;
+	border: none;
 }
 
 *,

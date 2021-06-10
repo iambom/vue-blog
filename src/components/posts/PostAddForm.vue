@@ -5,7 +5,7 @@
         <label for="title"></label>
         <input id="title" type="text" placeholder="제목" v-model="title" />
       </div>
-      <div>
+      <div class="contents-wrap">
         <label for="contents"> </label>
         <textarea
           id="contents"
@@ -14,12 +14,25 @@
           v-model="contents"
         />
       </div>
+      <div class="image-file-wrap">
+        <button class="btn-add-image" @click="selectImageFile">
+          <i class="fas fa-camera"></i>
+        </button>
+        <input
+          ref="imageFileInput"
+          type="file"
+          accept="image/*"
+          name="file"
+          @change="onFileChange"
+        />
+      </div>
       <button type="submit" class="btn">create</button>
     </form>
   </div>
 </template>
 
 <script>
+import { imageUpload } from '@/service/imageUploader';
 export default {
   data() {
     return {
@@ -28,6 +41,15 @@ export default {
     };
   },
   methods: {
+    selectImageFile(event) {
+      event.preventDefault();
+      this.$refs.imageFileInput.click();
+    },
+    async onFileChange(event) {
+      // console.log(event.target.files[0]);
+      const uploaded = await imageUpload(event.target.files[0]);
+      console.log(uploaded);
+    },
     submitForm() {
       if (this.title && this.contents !== '') {
         const date = new Date();
