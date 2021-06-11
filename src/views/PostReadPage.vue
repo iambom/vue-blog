@@ -1,7 +1,12 @@
 <template>
   <div class="read-container" v-if="readMode">
     <p class="title">{{ title }}</p>
-    <div class="contents">{{ contents }}</div>
+    <div class="contents-wrap">
+      <div class="img-wrap">
+        <img :src="this.thumbnail" :alt="this.thumbnailAltText" />
+      </div>
+      <div>{{ contents }}</div>
+    </div>
 
     <div class="btn-wrap">
       <button class="btn-edit" @click="editItem">
@@ -23,6 +28,8 @@ export default {
     return {
       title: '',
       contents: '',
+      thumbnail: '',
+      thumbnailAltText: '',
       mode: 'read',
     };
   },
@@ -36,8 +43,17 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
+    console.log('1 ', id);
     this.$store.commit('getPostItem', id);
     const { title, contents } = this.$store.state.postItem;
+    console.log('3 ', title, contents);
+    if (this.$store.state.postItem.imageFileInfo) {
+      const { fileName, fileUrl } = this.$store.state.postItem.imageFileInfo;
+      this.thumbnail = fileUrl;
+      this.thumbnailAltText = fileName;
+    } else {
+      return;
+    }
     this.title = title;
     this.contents = contents;
   },

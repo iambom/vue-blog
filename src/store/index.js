@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { saveData, removeData } from '@/service/repository';
+import { saveData, removeData, syncData } from '@/service/repository';
 
 Vue.use(Vuex);
 
@@ -48,8 +48,17 @@ export default new Vuex.Store({
       state.imageFileName.push(imageFileName);
     },
     getPostItem(state, id) {
-      const obj = state.items.filter(item => item.id === id)[0];
-      state.postItem = obj;
+      if (state.items.length > 0) {
+        const obj = state.items.filter(item => item.id === id)[0];
+        state.postItem = obj;
+      } else {
+        syncData(state.user.uid, data => {
+          let itemsArray = Object.values(data);
+          const obj = itemsArray.filter(item => item.id === id)[0];
+          state.postItem = obj;
+          console.log('2 ', state.postItem);
+        });
+      }
     },
     saveEditItem(state, payload) {
       const index = state.items.findIndex(i => i.id === payload.id);
