@@ -12,6 +12,7 @@ export default new Vuex.Store({
       uid: null,
     },
     items: [],
+    imageFileName: [],
     postItem: {
       id: '',
       name: '',
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     setItems(state, items) {
       state.items = items;
     },
+    setImageFileName(state, imageFileName) {
+      state.imageFileName.push(imageFileName);
+    },
     getPostItem(state, id) {
       const obj = state.items.filter(item => item.id === id)[0];
       state.postItem = obj;
@@ -54,6 +58,7 @@ export default new Vuex.Store({
     },
     addPostItem(state, newItem) {
       state.items.push(newItem);
+      console.log(state.items, newItem);
       saveData(state.user.uid, newItem);
     },
     deleteItem(state, id) {

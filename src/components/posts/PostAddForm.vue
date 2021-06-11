@@ -15,7 +15,7 @@
         />
       </div>
       <div class="image-file-wrap">
-        <button class="btn-add-image" @click="selectImageFile">
+        <button class="btn-add-image" @click.prevent="selectImageFile">
           <i class="fas fa-camera"></i>
         </button>
         <input
@@ -25,6 +25,11 @@
           name="file"
           @change="onFileChange"
         />
+        <span class="file-name"
+          >{{ this.imageFileInfo.fileName }}.{{
+            this.imageFileInfo.format
+          }}</span
+        >
       </div>
       <button type="submit" class="btn">create</button>
     </form>
@@ -38,17 +43,27 @@ export default {
     return {
       title: '',
       contents: '',
+      imageFileInfo: '',
     };
   },
   methods: {
-    selectImageFile(event) {
-      event.preventDefault();
+    selectImageFile() {
       this.$refs.imageFileInput.click();
     },
     async onFileChange(event) {
       // console.log(event.target.files[0]);
       const uploaded = await imageUpload(event.target.files[0]);
       console.log(uploaded);
+      const { original_filename, format, url, width, height } = uploaded;
+      const imageFileInfo = {
+        fileName: original_filename,
+        fileUrl: url,
+        format,
+        width,
+        height,
+      };
+      this.imageFileInfo = imageFileInfo;
+      this.$store.commit('setImageFileName', this.imageFileInfo.fileName);
     },
     submitForm() {
       if (this.title && this.contents !== '') {
@@ -66,7 +81,9 @@ export default {
           contents: this.contents,
           name: this.$store.state.user.username,
           publishedAt,
+          imageFileInfo: this.imageFileInfo,
         };
+        // console.log(newItem);
         this.$store.commit('addPostItem', newItem);
         this.$router.push('/main');
       }

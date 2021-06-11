@@ -14,8 +14,11 @@
         <p class="title">{{ postItem.title }}</p>
         <p class="contents">{{ postItem.contents }}</p>
       </div>
-      <div class="img-wrap">
-        <img src="@/assets/mask.jpg" alt="업로드 이미지" />
+      <div class="img-wrap" v-if="isThumbnail">
+        <img
+          :src="postItem.imageFileInfo.fileUrl"
+          :alt="postItem.imageFileInfo.fileName"
+        />
       </div>
     </router-link>
   </li>
@@ -27,6 +30,16 @@ export default {
     postItem: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      thumbnail: '',
+    };
+  },
+  computed: {
+    isThumbnail() {
+      return this.postItem.imageFileInfo;
     },
   },
 };
