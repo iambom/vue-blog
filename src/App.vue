@@ -25,6 +25,11 @@ export default {
     AppHeader,
     LoadingSpinner,
   },
+  computed: {
+    isUserLogin() {
+      return this.$store.getters.isLogin;
+    },
+  },
   watch: {
     isUserLogin(value) {
       if (value !== null) this.isLoading = false;
@@ -33,11 +38,6 @@ export default {
   mounted() {
     this.isLoading = true;
     onAuthChange();
-  },
-  computed: {
-    isUserLogin() {
-      return this.$store.getters.isLogin;
-    },
   },
 };
 </script>

@@ -13,13 +13,7 @@ export default new Vuex.Store({
     },
     items: [],
     imageFileName: [],
-    postItem: {
-      id: '',
-      name: '',
-      title: '',
-      contents: '',
-      publishedAt: '',
-    },
+    postItem: null,
   },
   getters: {
     isLogin(state) {
@@ -28,6 +22,9 @@ export default new Vuex.Store({
         state.user.profileImage !== null &&
         state.user.uid !== null
       );
+    },
+    getReadData(state) {
+      return state.postItem !== null;
     },
   },
   mutations: {
@@ -56,9 +53,11 @@ export default new Vuex.Store({
           let itemsArray = Object.values(data);
           const obj = itemsArray.filter(item => item.id === id)[0];
           state.postItem = obj;
-          console.log('2 ', state.postItem);
         });
       }
+    },
+    clearPostItem(state) {
+      state.postItem = null;
     },
     saveEditItem(state, payload) {
       const index = state.items.findIndex(i => i.id === payload.id);
@@ -67,7 +66,6 @@ export default new Vuex.Store({
     },
     addPostItem(state, newItem) {
       state.items.push(newItem);
-      console.log(state.items, newItem);
       saveData(state.user.uid, newItem);
     },
     deleteItem(state, id) {

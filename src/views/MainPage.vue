@@ -22,6 +22,7 @@ export default {
     };
   },
   created() {
+    this.$store.commit('clearPostItem');
     const userId = this.$store.state.user.uid;
     syncData(userId, data => {
       let itemsArray = Object.values(data);
