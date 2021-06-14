@@ -62,6 +62,7 @@ export default new Vuex.Store({
     saveEditItem(state, payload) {
       const index = state.items.findIndex(i => i.id === payload.id);
       state.items.splice(index, 1, payload.editItem);
+      console.log('수정 ', state.items);
       saveData(state.user.uid, payload.editItem);
     },
     addPostItem(state, newItem) {

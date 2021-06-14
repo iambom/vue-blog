@@ -26,9 +26,7 @@
           @change="onFileChange"
         />
         <span class="file-name"
-          >{{ this.imageFileInfo.fileName }}.{{
-            this.imageFileInfo.format
-          }}</span
+          >{{ imageFileInfo.fileName }}.{{ imageFileInfo.format }}</span
         >
       </div>
       <button type="submit" class="btn">create</button>
