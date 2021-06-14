@@ -211,6 +211,9 @@ header .create-button span{
     max-width: 500px;
     /* display: block; */
 }
+.read-container .contents-wrap .txt-wrap a {
+    color: blue;
+}
 .btn-wrap{
     position: absolute;
     bottom: 10px;

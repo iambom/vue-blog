@@ -8,7 +8,17 @@
           <div class="img-wrap" v-if="isImageFile">
             <img :src="thumbnail" :alt="thumbnailAltText" />
           </div>
-          <div>{{ contents }}</div>
+          <div class="txt-wrap">
+            <template v-for="(text, index) in contentsArray()">
+              <router-link
+                v-if="text.startsWith('#')"
+                :key="index"
+                :to="`/hashtag/${text.slice(1)}`"
+                >{{ text }}</router-link
+              >
+              <template v-else>{{ text }}</template>
+            </template>
+          </div>
         </div>
 
         <div class="btn-wrap">
@@ -40,6 +50,7 @@ export default {
       contents: '',
       thumbnail: '',
       thumbnailAltText: '',
+      hashtags: [],
       mode: 'read',
       isLoading: false,
       isImageFile: false,
@@ -79,6 +90,14 @@ export default {
     this.isLoading = true;
   },
   methods: {
+    contentsArray() {
+      return this.contents.split(/(#[^\s]+)/g).map(value => {
+        if (value.match(/#[^\s]+/)) {
+          return value;
+        }
+        return value;
+      });
+    },
     editItem() {
       this.mode = 'edit';
     },
