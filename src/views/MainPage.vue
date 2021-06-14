@@ -1,5 +1,12 @@
 <template>
   <div>
+    <ul class="tags-container">
+      <tags-list-item
+        v-for="(tag, index) in tags"
+        :key="index"
+        :tag="tag"
+      ></tags-list-item>
+    </ul>
     <ul class="list-container">
       <post-list-item
         v-for="postItem in postItems"
@@ -12,12 +19,14 @@
 
 <script>
 import PostListItem from '../components/posts/PostListItem.vue';
+import TagsListItem from '../components/TagsListItem.vue';
 import { syncData } from '@/service/repository';
 export default {
   name: 'AuthMain',
   data() {
     return {
       postItems: [],
+      tags: this.$store.state.tags,
       isLoading: false,
     };
   },
@@ -32,6 +41,7 @@ export default {
   },
   components: {
     PostListItem,
+    TagsListItem,
   },
   computed: {
     isUserLogin() {

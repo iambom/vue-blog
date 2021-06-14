@@ -220,3 +220,20 @@ header .create-button span{
     color: gray
 }
 
+/*--- TAGS ---*/
+.tags-container{
+    display: flex;
+    flex-flow: row wrap;
+}
+.tags-container li {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 1px 10px;
+    border: 2px solid lightgray;
+    background-color: lightgray;
+    color: #364f6b;
+    border-radius: 20px;
+    font-size: 0.8em;
+    cursor: pointer;
+
+}

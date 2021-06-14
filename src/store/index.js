@@ -14,6 +14,16 @@ export default new Vuex.Store({
     items: [],
     imageFileName: [],
     postItem: null,
+    tags: [
+      '#루피',
+      '#오늘일기',
+      '#블챌',
+      '#우중캠핑',
+      '#라우트컴포넌트에속성전달',
+      '#이케아',
+      '#플스5',
+      '#PlayStation5',
+    ],
   },
   getters: {
     isLogin(state) {
