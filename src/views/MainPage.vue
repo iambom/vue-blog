@@ -36,6 +36,8 @@ export default {
     syncData(userId, data => {
       let itemsArray = Object.values(data);
       this.postItems = itemsArray;
+      this.getHashtags(this.postItems);
+
       this.$store.commit('setItems', this.postItems);
     });
   },
@@ -46,6 +48,17 @@ export default {
   computed: {
     isUserLogin() {
       return this.$store.getters.isLogin;
+    },
+  },
+  methods: {
+    getHashtags(postItems) {
+      postItems.map(item => {
+        item.contents.split(/(#[^\s]+)/g).map(value => {
+          if (value.match(/#[^\s]+/)) {
+            this.$store.commit('setTags', value);
+          }
+        });
+      });
     },
   },
 };

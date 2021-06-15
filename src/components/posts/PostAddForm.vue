@@ -63,8 +63,17 @@ export default {
       this.imageFileInfo = imageFileInfo;
       this.$store.commit('setImageFileName', this.imageFileInfo.fileName);
     },
+    convertToHashTag() {
+      this.contents.split(/(#[^\s]+)/g).map(value => {
+        if (value.match(/#[^\s]+/)) {
+          this.$store.commit('setTags', value);
+        }
+      });
+    },
     submitForm() {
       if (this.title && this.contents !== '') {
+        this.convertToHashTag();
+
         const date = new Date();
         const publishedAt = `${date.getFullYear()}. ${
           date.getMonth() + 1
@@ -81,7 +90,7 @@ export default {
           publishedAt,
           imageFileInfo: this.imageFileInfo,
         };
-        // console.log(newItem);
+
         this.$store.commit('addPostItem', newItem);
         this.$router.push('/main');
       }

@@ -14,16 +14,7 @@ export default new Vuex.Store({
     items: [],
     imageFileName: [],
     postItem: null,
-    tags: [
-      '#루피',
-      '#오늘일기',
-      '#블챌',
-      '#우중캠핑',
-      '#라우트컴포넌트에속성전달',
-      '#이케아',
-      '#플스5',
-      '#PlayStation5',
-    ],
+    tags: [],
   },
   getters: {
     isLogin(state) {
@@ -53,6 +44,15 @@ export default new Vuex.Store({
     },
     setImageFileName(state, imageFileName) {
       state.imageFileName.push(imageFileName);
+    },
+    setTags(state, tags) {
+      let tagArray = [];
+      tagArray.push(tags);
+      tagArray.forEach(element => {
+        if (!state.tags.includes(element)) {
+          state.tags.push(element);
+        }
+      });
     },
     getPostItem(state, id) {
       if (state.items.length > 0) {
