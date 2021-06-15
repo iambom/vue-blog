@@ -5,7 +5,7 @@ function saveData(userId, postItem) {
 }
 
 function removeData(userId, postItem) {
-  console.log('removeData ', userId, postItem);
+  // console.log('removeData ', userId, postItem);
   firebase.database().ref(`${userId}/posts/${postItem.id}`).remove();
 }
 

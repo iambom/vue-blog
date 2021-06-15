@@ -15,6 +15,7 @@ export default new Vuex.Store({
     imageFileName: [],
     postItem: null,
     tags: [],
+    filteredTag: [],
   },
   getters: {
     isLogin(state) {
@@ -52,6 +53,11 @@ export default new Vuex.Store({
         if (!state.tags.includes(element)) {
           state.tags.push(element);
         }
+      });
+    },
+    filterTag(state, tag) {
+      state.filteredTag = state.items.filter(item => {
+        return item.contents.includes(`#${tag}`);
       });
     },
     getPostItem(state, id) {

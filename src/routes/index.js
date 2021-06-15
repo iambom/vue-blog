@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/store/index';
 
 Vue.use(VueRouter);
 
@@ -28,7 +29,20 @@ const router = new VueRouter({
       name: 'PostReadPage',
       component: () => import('@/views/PostReadPage.vue'),
     },
+    {
+      path: '/hashtag/:word',
+      name: 'hashtag',
+      component: () => import('@/views/MainPage.vue'),
+    },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.params.word) {
+    store.commit('filterTag', to.params.word);
+    next();
+  }
+  next();
 });
 
 export default router;

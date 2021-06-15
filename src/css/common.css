@@ -234,9 +234,9 @@ header .create-button span{
     padding: 1px 10px;
     border: 2px solid lightgray;
     background-color: lightgray;
-    color: #364f6b;
     border-radius: 20px;
     font-size: 0.8em;
-    cursor: pointer;
-
+}
+.tags-container li a{
+    color: #364f6b;
 }

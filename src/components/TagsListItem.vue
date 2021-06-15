@@ -1,6 +1,8 @@
 <template>
   <li>
-    {{ tag }}
+    <router-link :to="`/post`">
+      {{ tag }}
+    </router-link>
   </li>
 </template>
 

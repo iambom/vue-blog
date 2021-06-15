@@ -33,13 +33,18 @@ export default {
   created() {
     this.$store.commit('clearPostItem');
     const userId = this.$store.state.user.uid;
-    syncData(userId, data => {
-      let itemsArray = Object.values(data);
-      this.postItems = itemsArray;
-      this.getHashtags(this.postItems);
 
-      this.$store.commit('setItems', this.postItems);
-    });
+    if (this.$router.history.current.name === 'hashtag') {
+      this.postItems = this.$store.state.filteredTag;
+    } else {
+      syncData(userId, data => {
+        let itemsArray = Object.values(data);
+        this.postItems = itemsArray;
+        this.getHashtags(this.postItems);
+
+        this.$store.commit('setItems', this.postItems);
+      });
+    }
   },
   components: {
     PostListItem,

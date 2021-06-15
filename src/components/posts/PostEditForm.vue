@@ -91,7 +91,7 @@ export default {
           publishedAt: publishedAt,
           imageFileInfo: this.imageFileInfo,
         };
-        console.log(editItem);
+        // console.log(editItem);
         this.$store.commit('saveEditItem', { editItem, id });
         this.$router.push('/main');
       }
