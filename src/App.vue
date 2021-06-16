@@ -4,8 +4,9 @@
 
     <div class="app-contents" v-else>
       <app-header v-if="isUserLogin"></app-header>
+      <tags-list-page></tags-list-page>
       <div>
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
       </div>
     </div>
   </div>
@@ -15,6 +16,7 @@
 import { onAuthChange } from '@/service/auth';
 import AppHeader from './components/common/AppHeader.vue';
 import LoadingSpinner from './components/common/LoadingSpinner.vue';
+import TagsListPage from './views/TagsListPage.vue';
 export default {
   data() {
     return {
@@ -24,6 +26,7 @@ export default {
   components: {
     AppHeader,
     LoadingSpinner,
+    TagsListPage,
   },
   computed: {
     isUserLogin() {

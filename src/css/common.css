@@ -236,7 +236,15 @@ header .create-button span{
     background-color: lightgray;
     border-radius: 20px;
     font-size: 0.8em;
+    cursor: pointer;
+}
+.tags-container li.active{
+    border: 2px solid #42b983;
+    background-color: #42b983;
 }
 .tags-container li a{
     color: #364f6b;
+}
+.tags-container li.active a{
+    color: #fff;
 }
