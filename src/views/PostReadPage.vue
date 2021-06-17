@@ -85,7 +85,7 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    this.$store.commit('getPostItem', id);
+    this.$store.commit('GET_POSTITEM', id);
 
     this.isLoading = true;
   },
@@ -104,7 +104,7 @@ export default {
     deleteItem() {
       if (confirm('삭제하시겠습니까?')) {
         const id = this.$route.params.id;
-        this.$store.commit('deleteItem', id);
+        this.$store.commit('DELETE_ITEM', id);
         this.$router.push('/main');
       }
     },

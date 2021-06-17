@@ -61,12 +61,12 @@ export default {
         height,
       };
       this.imageFileInfo = imageFileInfo;
-      this.$store.commit('setImageFileName', this.imageFileInfo.fileName);
+      this.$store.commit('SET_IMAGE_FILE_NAME', this.imageFileInfo.fileName);
     },
     convertToHashTag() {
       this.contents.split(/(#[^\s]+)/g).map(value => {
         if (value.match(/#[^\s]+/)) {
-          this.$store.commit('setTags', value);
+          this.$store.commit('SET_TAGS', value);
         }
       });
     },
@@ -91,7 +91,7 @@ export default {
           imageFileInfo: this.imageFileInfo,
         };
 
-        this.$store.commit('addPostItem', newItem);
+        this.$store.commit('ADD_POSTITEM', newItem);
         this.$router.push('/main');
       }
     },

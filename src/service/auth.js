@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 import store from '@/store/index';
 import router from '@/routes/index';
-import { syncData } from '@/service/repository';
 
 function loginUser() {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -14,7 +13,7 @@ function loginUser() {
         uid: result.user.uid,
         profileImage: result.additionalUserInfo.profile.picture,
       };
-      store.commit('setUser', userData);
+      store.commit('SET_USER', userData);
       router.push({
         path: 'main',
         name: 'AuthMain',
@@ -29,7 +28,7 @@ function loginUser() {
 
 function logoutUser() {
   firebase.auth().signOut();
-  store.commit('clearUser');
+  store.commit('CLEAR_USER');
 }
 
 function onAuthChange() {
@@ -41,7 +40,7 @@ function onAuthChange() {
         uid: user.uid,
         profileImage: user.photoURL,
       };
-      store.commit('setUser', userData);
+      store.commit('SET_USER', userData);
       if (router.history.current.path === '/login') {
         router.push('/main');
       }

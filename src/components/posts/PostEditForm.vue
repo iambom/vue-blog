@@ -47,7 +47,7 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    this.$store.commit('getPostItem', id);
+    this.$store.commit('GET_POSTITEM', id);
     const postItem = this.$store.state.postItem;
     const { title, contents } = postItem;
     this.title = title;
@@ -77,7 +77,7 @@ export default {
         height,
       };
       this.imageFileInfo = imageFileInfo;
-      this.$store.commit('setImageFileName', this.imageFileInfo.fileName);
+      this.$store.commit('SET_IMAGE_FILE_NAME', this.imageFileInfo.fileName);
     },
     submitForm() {
       console.log(this.imageFileInfo);
@@ -92,7 +92,7 @@ export default {
           imageFileInfo: this.imageFileInfo,
         };
         // console.log(editItem);
-        this.$store.commit('saveEditItem', { editItem, id });
+        this.$store.commit('SAVE_EDITITEM', { editItem, id });
         this.$router.push('/main');
       }
     },

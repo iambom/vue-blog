@@ -22,7 +22,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.commit('clearPostItem');
+    this.$store.commit('CLEAR_POSTITEM');
     const userId = this.$store.state.user.uid;
 
     if (this.$route.name === 'hashtag') {
@@ -33,7 +33,7 @@ export default {
         this.postItems = itemsArray;
         this.getHashtags(this.postItems);
 
-        this.$store.commit('setItems', this.postItems);
+        this.$store.commit('SET_ITEMS', this.postItems);
       });
     }
   },
@@ -50,7 +50,7 @@ export default {
       postItems.map(item => {
         item.contents.split(/(#[^\s]+)/g).map(value => {
           if (value.match(/#[^\s]+/)) {
-            this.$store.commit('setTags', value);
+            this.$store.commit('SET_TAGS', value);
           }
         });
       });

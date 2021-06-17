@@ -39,7 +39,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.params.word) {
-    store.commit('filterTag', to.params.word);
+    store.commit('FILTER_TAG', to.params.word);
     next();
   }
   next();
