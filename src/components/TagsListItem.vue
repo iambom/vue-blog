@@ -1,8 +1,5 @@
 <template>
-  <li
-    @click="toggleTag(index)"
-    :class="{ active: this.isActiveItem === index }"
-  >
+  <li :class="{ active: index === isActiveItem }" @click="toggleTag">
     <router-link :to="`/hashtag/${tag.slice(1)}`">
       {{ tag }}
     </router-link>
@@ -11,15 +8,10 @@
 
 <script>
 export default {
-  props: ['tag', 'index'],
-  data() {
-    return {
-      isActiveItem: '',
-    };
-  },
+  props: ['tag', 'index', 'isActiveItem'],
   methods: {
-    toggleTag(itemIndex) {
-      this.isActiveItem = itemIndex;
+    toggleTag() {
+      this.$emit('tag', this.index);
     },
   },
 };

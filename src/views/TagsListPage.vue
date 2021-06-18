@@ -5,6 +5,8 @@
       :key="index"
       :tag="tag"
       :index="index"
+      :isActiveItem="isActiveItem"
+      @tag="toggleTag"
     ></tags-list-item>
   </ul>
 </template>
@@ -18,7 +20,13 @@ export default {
   data() {
     return {
       tags: this.$store.state.tags,
+      isActiveItem: '',
     };
+  },
+  methods: {
+    toggleTag(itemIndex) {
+      this.isActiveItem = itemIndex;
+    },
   },
 };
 </script>
