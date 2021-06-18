@@ -25,17 +25,20 @@ export default {
     this.$store.commit('CLEAR_POSTITEM');
     const userId = this.$store.state.user.uid;
 
-    if (this.$route.name === 'hashtag') {
-      this.postItems = this.$store.state.filteredTag;
-    } else {
-      syncData(userId, data => {
-        let itemsArray = Object.values(data);
-        this.postItems = itemsArray;
-        this.getHashtags(this.postItems);
+    syncData(userId, data => {
+      let itemsArray = Object.values(data);
+      this.postItems = itemsArray;
+      this.getHashtags(this.postItems);
 
-        this.$store.commit('SET_ITEMS', this.postItems);
-      });
-    }
+      if (this.$route.name === 'hashtag') {
+        this.postItems = this.postItems.filter(item => {
+          return item.contents.includes(`#${this.$route.params.word}`);
+        });
+      }
+
+      if (this.postItems.length === 0) this.$router.push('/main');
+      this.$store.commit('SET_ITEMS', this.postItems);
+    });
   },
   components: {
     PostListItem,

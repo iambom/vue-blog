@@ -17,6 +17,7 @@ function syncData(userId, onUpdate) {
     // console.log(snapshot, value);
     value && onUpdate(value);
   });
+
   return () => ref.off();
 }
 

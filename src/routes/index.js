@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import store from '@/store/index';
 
 Vue.use(VueRouter);
 
@@ -35,14 +34,6 @@ const router = new VueRouter({
       component: () => import('@/views/MainPage.vue'),
     },
   ],
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.params.word) {
-    store.commit('FILTER_TAG', to.params.word);
-    next();
-  }
-  next();
 });
 
 export default router;
