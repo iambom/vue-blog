@@ -7,31 +7,33 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      redirect: '/main',
-    },
-    {
       path: '/login',
       component: () => import('@/views/LoginPage.vue'),
     },
     {
-      path: '/main',
-      name: 'AuthMain',
+      path: '/',
       component: () => import('@/views/MainPage.vue'),
-    },
-    {
-      path: '/add',
-      component: () => import('@/views/PostAddPage.vue'),
-    },
-    {
-      path: '/post/:id',
-      name: 'PostReadPage',
-      component: () => import('@/views/PostReadPage.vue'),
-    },
-    {
-      path: '/hashtag/:word',
-      name: 'hashtag',
-      component: () => import('@/views/MainPage.vue'),
+      children: [
+        {
+          path: '/',
+          name: 'AuthMain',
+          component: () => import('@/views/PostListsViewPage.vue'),
+        },
+        {
+          path: '/add',
+          component: () => import('@/views/PostAddPage.vue'),
+        },
+        {
+          path: '/post/:id',
+          name: 'PostReadPage',
+          component: () => import('@/views/PostReadPage.vue'),
+        },
+        {
+          path: '/hashtag/:word',
+          name: 'Hashtag',
+          component: () => import('@/views/PostListsViewPage.vue'),
+        },
+      ],
     },
   ],
 });

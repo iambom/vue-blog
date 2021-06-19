@@ -52,7 +52,6 @@ export default {
       thumbnailAltText: '',
       hashtags: [],
       mode: 'read',
-      isLoading: false,
       isImageFile: false,
     };
   },
@@ -62,6 +61,9 @@ export default {
     },
     getData() {
       return this.$store.getters.getReadData;
+    },
+    isLoading() {
+      return this.$store.state.isLoading;
     },
   },
   watch: {
@@ -78,16 +80,12 @@ export default {
           this.thumbnailAltText = postItem.imageFileInfo.fileName;
           this.isImageFile = true;
         }
-
-        this.isLoading = false;
       }
     },
   },
   created() {
     const id = this.$route.params.id;
     this.$store.commit('GET_POSTITEM', id);
-
-    this.isLoading = true;
   },
   methods: {
     contentsArray() {
@@ -105,7 +103,7 @@ export default {
       if (confirm('삭제하시겠습니까?')) {
         const id = this.$route.params.id;
         this.$store.commit('DELETE_ITEM', id);
-        this.$router.push('/main');
+        this.$router.push('/');
       }
     },
   },

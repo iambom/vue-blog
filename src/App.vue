@@ -3,43 +3,34 @@
     <loading-spinner v-if="isLoading"></loading-spinner>
 
     <div class="app-contents" v-else>
-      <app-header v-if="isUserLogin"></app-header>
-      <tags-list-page></tags-list-page>
-      <div>
-        <router-view :key="$route.fullPath"></router-view>
-      </div>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
 import { onAuthChange } from '@/service/auth';
-import AppHeader from './components/common/AppHeader.vue';
 import LoadingSpinner from './components/common/LoadingSpinner.vue';
-import TagsListPage from './views/TagsListPage.vue';
 export default {
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
   components: {
-    AppHeader,
     LoadingSpinner,
-    TagsListPage,
   },
   computed: {
     isUserLogin() {
       return this.$store.getters.isLogin;
     },
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
   },
   watch: {
     isUserLogin(value) {
-      if (value !== null) this.isLoading = false;
+      if (value && value !== null) this.$store.commit('SET_LOADING', false);
     },
   },
   mounted() {
-    this.isLoading = true;
+    console.log('1');
+    this.$store.commit('SET_LOADING', true);
     onAuthChange();
   },
 };

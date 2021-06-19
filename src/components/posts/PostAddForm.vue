@@ -92,7 +92,7 @@ export default {
         };
 
         this.$store.commit('ADD_POSTITEM', newItem);
-        this.$router.push('/main');
+        this.$router.push('/');
       }
     },
   },

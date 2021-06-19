@@ -16,13 +16,14 @@ export default new Vuex.Store({
     postItem: null,
     tags: [],
     filteredTag: [],
+    isLoading: false,
   },
   getters: {
     isLogin(state) {
       return (
-        state.user.username !== null &&
-        state.user.profileImage !== null &&
-        state.user.uid !== null
+        state?.user?.username !== null &&
+        state?.user?.profileImage !== null &&
+        state?.user?.uid !== null
       );
     },
     getReadData(state) {

@@ -1,6 +1,9 @@
 import { saveData, removeData, syncData } from '@/service/repository';
 
 export default {
+  SET_LOADING(state, payload) {
+    state.isLoading = payload;
+  },
   SET_USER(state, payload) {
     state.user = {
       username: payload.username,
@@ -33,9 +36,11 @@ export default {
   },
   GET_POSTITEM(state, id) {
     if (state.items.length > 0) {
+      // MainPage의 list를 클릭 해서 ReadPage로 갈 때
       const obj = state.items.filter(item => item.id === id)[0];
       state.postItem = obj;
     } else {
+      // ReadPage에서 새로고침 할 때
       syncData(state.user.uid, data => {
         let itemsArray = Object.values(data);
         const obj = itemsArray.filter(item => item.id === id)[0];
@@ -49,7 +54,6 @@ export default {
   SAVE_EDITITEM(state, payload) {
     const index = state.items.findIndex(i => i.id === payload.id);
     state.items.splice(index, 1, payload.editItem);
-    console.log('수정 ', state.items);
     saveData(state.user.uid, payload.editItem);
   },
   ADD_POSTITEM(state, newItem) {

@@ -1,65 +1,35 @@
 <template>
-  <div>
-    <ul class="list-container">
-      <post-list-item
-        v-for="postItem in postItems"
-        :key="postItem.id"
-        :postItem="postItem"
-      ></post-list-item>
-    </ul>
+  <loading-spinner v-if="isLoading"></loading-spinner>
+
+  <div v-else>
+    <app-header v-if="isUserLogin"></app-header>
+    <tags-list-page></tags-list-page>
+    <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
 
 <script>
-import PostListItem from '../components/posts/PostListItem.vue';
-import { syncData } from '@/service/repository';
+import AppHeader from '@/components/common/AppHeader.vue';
+import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
+import TagsListPage from '@/views/TagsListPage.vue';
 export default {
-  name: 'AuthMain',
-  data() {
-    return {
-      postItems: [],
-      isLoading: false,
-    };
-  },
-  mounted() {
-    this.$store.commit('CLEAR_POSTITEM');
-    const userId = this.$store.state.user.uid;
-
-    syncData(userId, data => {
-      let itemsArray = Object.values(data);
-      this.postItems = itemsArray;
-      this.getHashtags(this.postItems);
-
-      if (this.$route.name === 'hashtag') {
-        this.postItems = this.postItems.filter(item => {
-          return item.contents.includes(`#${this.$route.params.word}`);
-        });
-      }
-
-      if (this.postItems.length === 0) this.$router.push('/main');
-      this.$store.commit('SET_ITEMS', this.postItems);
-    });
-  },
   components: {
-    PostListItem,
+    AppHeader,
+    LoadingSpinner,
+    TagsListPage,
   },
   computed: {
     isUserLogin() {
       return this.$store.getters.isLogin;
     },
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
   },
-  methods: {
-    getHashtags(postItems) {
-      postItems.map(item => {
-        item.contents.split(/(#[^\s]+)/g).map(value => {
-          if (value.match(/#[^\s]+/)) {
-            this.$store.commit('SET_TAGS', value);
-          }
-        });
-      });
+  watch: {
+    isUserLogin(value) {
+      if (value && value !== null) this.$store.commit('SET_LOADING', false);
     },
   },
 };
 </script>
-
-<style></style>

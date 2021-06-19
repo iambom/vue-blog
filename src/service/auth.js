@@ -42,14 +42,15 @@ function onAuthChange() {
       };
       store.commit('SET_USER', userData);
       if (router.history.current.path === '/login') {
-        router.push('/main');
+        router.push('/');
       }
+      console.log('2');
     } else {
       // 로그인 하지 않은 경우
-      console.log('왜 안 나와', router);
       if (router.history.current.path !== '/login') {
         router.push('/login');
       }
+      store.commit('SET_LOADING', false);
     }
   });
 }
