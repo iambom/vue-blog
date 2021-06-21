@@ -39,7 +39,7 @@ export default {
       return this.$store.getters.isLogin;
     },
     showAddBtn() {
-      return this.$store.state.showAddButton;
+      return this.$store.state.showAddBtn;
     },
   },
   methods: {

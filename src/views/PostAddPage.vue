@@ -8,9 +8,6 @@ export default {
   components: {
     PostAddForm,
   },
-  created() {
-    console.log('add page');
-  },
 };
 </script>
 

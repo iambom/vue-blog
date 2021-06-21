@@ -46,10 +46,17 @@ router.beforeEach((to, from, next) => {
   } else {
     store.commit('SHOW_TAG_LIST', false);
   }
+
   if (to.name === 'AddPage') {
     store.commit('SHOW_ADD_BTN', false);
   } else {
     store.commit('SHOW_ADD_BTN', true);
+  }
+
+  if (to.name === 'AuthMain') {
+    store.commit('SHOW_GO_MAIN_BTN', false);
+  } else {
+    store.commit('SHOW_GO_MAIN_BTN', true);
   }
   next();
 });

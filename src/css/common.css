@@ -225,6 +225,7 @@ header .create-button span{
 
 /*--- TAGS ---*/
 .tags-container{
+    margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
 }

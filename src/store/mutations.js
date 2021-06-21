@@ -33,7 +33,10 @@ export default {
     state.showTaglist = payload;
   },
   SHOW_ADD_BTN(state, payload) {
-    state.showAddButton = payload;
+    state.showAddBtn = payload;
+  },
+  SHOW_GO_MAIN_BTN(state, payload) {
+    state.showGoToMainBtn = payload;
   },
   FILTER_TAG(state, tag) {
     state.filteredTag = state.items.filter(item => {
