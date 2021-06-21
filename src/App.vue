@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <loading-spinner v-if="isLoading"></loading-spinner>
+  <loading-spinner v-if="isLoading"></loading-spinner>
 
-    <div class="app-contents" v-else>
-      <router-view></router-view>
-    </div>
+  <div class="app-contents" v-else>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { onAuthChange } from '@/service/auth';
-import LoadingSpinner from './components/common/LoadingSpinner.vue';
+import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 export default {
   components: {
     LoadingSpinner,

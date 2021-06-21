@@ -3,7 +3,7 @@
 
   <div v-else>
     <app-header v-if="isUserLogin"></app-header>
-    <tags-list-page></tags-list-page>
+    <tags-list-page v-if="showTagList"></tags-list-page>
     <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
@@ -24,6 +24,9 @@ export default {
     },
     isLoading() {
       return this.$store.state.isLoading;
+    },
+    showTagList() {
+      return this.$store.state.showTaglist;
     },
   },
   watch: {

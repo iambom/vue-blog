@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../store';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,7 @@ const router = new VueRouter({
         },
         {
           path: '/add',
+          name: 'AddPage',
           component: () => import('@/views/PostAddPage.vue'),
         },
         {
@@ -36,6 +38,20 @@ const router = new VueRouter({
       ],
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'AuthMain' || to.name === 'Hashtag') {
+    store.commit('SHOW_TAG_LIST', true);
+  } else {
+    store.commit('SHOW_TAG_LIST', false);
+  }
+  if (to.name === 'AddPage') {
+    store.commit('SHOW_ADD_BTN', false);
+  } else {
+    store.commit('SHOW_ADD_BTN', true);
+  }
+  next();
 });
 
 export default router;

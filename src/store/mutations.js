@@ -29,6 +29,12 @@ export default {
       }
     });
   },
+  SHOW_TAG_LIST(state, payload) {
+    state.showTaglist = payload;
+  },
+  SHOW_ADD_BTN(state, payload) {
+    state.showAddButton = payload;
+  },
   FILTER_TAG(state, tag) {
     state.filteredTag = state.items.filter(item => {
       return item.contents.includes(`#${tag}`);
