@@ -3,8 +3,8 @@
 
   <div v-else>
     <app-header v-if="isUserLogin"></app-header>
-    <router-link to="/" v-if="showGoToMainBtn"
-      ><i class="fas fa-long-arrow-alt-left"></i> Go to Main</router-link
+    <router-link to="/" v-if="showGoHomeBtn" class="btn-go-home"
+      ><i class="fas fa-long-arrow-alt-left"></i> Go home</router-link
     >
     <tags-list-page v-if="showTagList"></tags-list-page>
     <router-view :key="$route.fullPath"></router-view>
@@ -31,8 +31,8 @@ export default {
     showTagList() {
       return this.$store.state.showTaglist;
     },
-    showGoToMainBtn() {
-      return this.$store.state.showGoToMainBtn;
+    showGoHomeBtn() {
+      return this.$store.state.showGoHomeBtn;
     },
   },
   watch: {

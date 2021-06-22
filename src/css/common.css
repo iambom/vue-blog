@@ -9,6 +9,11 @@ body{
     width: 100%;  
     position: relative;
 }
+.btn-go-home {
+    display: block;
+    margin-bottom: 10px;
+    color: gray
+}
 
 /*--- HEADER ---*/
 header {
@@ -62,9 +67,6 @@ header .create-button span{
 }
 
 /*--- LIST ---*/
-/* .list-container {
-	padding-top: 13px;
-} */
 .list-container li{
     width: 100%;
     padding: 15px;
@@ -225,7 +227,6 @@ header .create-button span{
 
 /*--- TAGS ---*/
 .tags-container{
-    margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
 }

@@ -54,9 +54,9 @@ router.beforeEach((to, from, next) => {
   }
 
   if (to.name === 'AuthMain') {
-    store.commit('SHOW_GO_MAIN_BTN', false);
+    store.commit('SHOW_GO_HOME_BTN', false);
   } else {
-    store.commit('SHOW_GO_MAIN_BTN', true);
+    store.commit('SHOW_GO_HOME_BTN', true);
   }
   next();
 });

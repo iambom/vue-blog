@@ -35,8 +35,8 @@ export default {
   SHOW_ADD_BTN(state, payload) {
     state.showAddBtn = payload;
   },
-  SHOW_GO_MAIN_BTN(state, payload) {
-    state.showGoToMainBtn = payload;
+  SHOW_GO_HOME_BTN(state, payload) {
+    state.showGoHomeBtn = payload;
   },
   FILTER_TAG(state, tag) {
     state.filteredTag = state.items.filter(item => {
