@@ -38,6 +38,7 @@ export default {
     };
   },
   computed: {
+    // 포스트 생성 시 등록한 이미지 파일 유무에 따른 썸네일 추가
     isThumbnail() {
       return this.postItem.imageFileInfo;
     },

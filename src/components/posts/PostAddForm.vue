@@ -45,11 +45,11 @@ export default {
     };
   },
   methods: {
+    // input 태그에 ref를 만들어 button을 클릭하면 숨긴 input에 접근 가능
     selectImageFile() {
       this.$refs.imageFileInput.click();
     },
     async onFileChange(event) {
-      // console.log(event.target.files[0]);
       const uploaded = await imageUpload(event.target.files[0]);
       console.log(uploaded);
       const { original_filename, format, url, width, height } = uploaded;
@@ -63,6 +63,7 @@ export default {
       this.imageFileInfo = imageFileInfo;
       this.$store.commit('SET_IMAGE_FILE_NAME', this.imageFileInfo.fileName);
     },
+    // 해쉬태그(#) 구별하여 저장
     convertToHashTag() {
       this.contents.split(/(#[^\s]+)/g).map(value => {
         if (value.match(/#[^\s]+/)) {

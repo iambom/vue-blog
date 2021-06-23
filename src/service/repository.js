@@ -5,7 +5,6 @@ function saveData(userId, postItem) {
 }
 
 function removeData(userId, postItem) {
-  // console.log('removeData ', userId, postItem);
   firebase.database().ref(`${userId}/posts/${postItem.id}`).remove();
 }
 
@@ -14,7 +13,6 @@ function syncData(userId, onUpdate) {
 
   ref.on('value', snapshot => {
     const value = snapshot.val();
-    // console.log(snapshot, value);
     value && onUpdate(value);
   });
 

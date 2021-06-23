@@ -46,6 +46,7 @@ export default {
     };
   },
   created() {
+    // edit 페이지 로드 후 포스트의 고유 id를 이용해 저장 되어 있던 컨텐츠 불러오기
     const id = this.$route.params.id;
     this.$store.commit('GET_POSTITEM', id);
     const postItem = this.$store.state.postItem;
@@ -66,7 +67,6 @@ export default {
     },
     async onFileChange(event) {
       const uploaded = await imageUpload(event.target.files[0]);
-      console.log(uploaded);
       this.isImageFile = true;
       const { original_filename, format, url, width, height } = uploaded;
       const imageFileInfo = {
@@ -80,15 +80,15 @@ export default {
       this.$store.commit('SET_IMAGE_FILE_NAME', this.imageFileInfo.fileName);
     },
     submitForm() {
-      console.log(this.imageFileInfo);
+      // 포스트의 id, 작성자, 최초 게시날짜는 그대로 두고 수정한 부분만 다시 저장
       if (this.title && this.contents !== '') {
         const { id, name, publishedAt } = this.$store.state.postItem;
         const editItem = {
-          id: id,
+          id,
           title: this.title,
           contents: this.contents,
-          name: name,
-          publishedAt: publishedAt,
+          name,
+          publishedAt,
           imageFileInfo: this.imageFileInfo,
         };
 

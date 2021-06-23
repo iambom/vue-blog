@@ -29,7 +29,7 @@ export default {
   mounted() {
     console.log('1');
     this.$store.commit('SET_LOADING', true);
-    onAuthChange();
+    onAuthChange(); // 새로고침 해도 로그인 인증 유지
   },
 };
 </script>

@@ -66,6 +66,7 @@ export default {
       return this.$store.state.isLoading;
     },
   },
+  // 데이터 불러 오는 것보다 화면 렌더링이 먼저 일어나서 사용
   watch: {
     getData(setItem) {
       if (setItem) {
@@ -88,6 +89,7 @@ export default {
     this.$store.commit('GET_POSTITEM', id);
   },
   methods: {
+    // 해시태그(#) 클릭 하면 링크 이동 하기 위한 필터링
     contentsArray() {
       return this.contents.split(/(#[^\s]+)/g).map(value => {
         if (value.match(/#[^\s]+/)) {
