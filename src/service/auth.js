@@ -1,12 +1,11 @@
-import firebase from 'firebase';
+import { firebaseAuth, googleProvider } from '@/service/firebase';
 import store from '@/store/index';
 import router from '@/routes/index';
 
 function loginUser() {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase
-    .auth()
-    .signInWithPopup(provider)
+  // const provider = new firebase.auth.GoogleAuthProvider();
+  firebaseAuth
+    .signInWithPopup(googleProvider)
     .then(result => {
       const userData = {
         username: result.additionalUserInfo.profile.name,
@@ -27,12 +26,12 @@ function loginUser() {
 }
 
 function logoutUser() {
-  firebase.auth().signOut();
+  firebaseAuth.signOut();
   store.commit('CLEAR_USER');
 }
 
 function onAuthChange() {
-  firebase.auth().onAuthStateChanged(user => {
+  firebaseAuth.onAuthStateChanged(user => {
     if (user) {
       // 로그인 된 경우
       const userData = {

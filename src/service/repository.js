@@ -1,15 +1,15 @@
-import firebase from 'firebase';
+import { firebaseDatabase } from '@/service/firebase';
 
 function saveData(userId, postItem) {
-  firebase.database().ref(`${userId}/posts/${postItem.id}`).set(postItem);
+  firebaseDatabase.ref(`${userId}/posts/${postItem.id}`).set(postItem);
 }
 
 function removeData(userId, postItem) {
-  firebase.database().ref(`${userId}/posts/${postItem.id}`).remove();
+  firebaseDatabase.ref(`${userId}/posts/${postItem.id}`).remove();
 }
 
 function syncData(userId, onUpdate) {
-  const ref = firebase.database().ref(`${userId}/posts/`);
+  const ref = firebaseDatabase.ref(`${userId}/posts/`);
 
   ref.on('value', snapshot => {
     const value = snapshot.val();
