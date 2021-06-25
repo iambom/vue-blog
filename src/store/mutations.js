@@ -52,6 +52,7 @@ export default {
       // ReadPage에서 새로고침 할 때
       syncData(state.user.uid, data => {
         let itemsArray = Object.values(data);
+        state.items = itemsArray;
         const obj = itemsArray.filter(item => item.id === id)[0];
         state.postItem = obj;
       });
@@ -73,6 +74,7 @@ export default {
     const deleteItem = state.items.filter(item => item.id === id)[0];
     const remainItems = state.items.filter(item => item.id !== id);
     state.items = remainItems;
+    console.log(deleteItem);
     removeData(state.user.uid, deleteItem);
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrapper">
-    <form class="form" @submit.prevent="submitForm">
+    <form class="form post" @submit.prevent="submitForm">
       <div>
         <label for="title"></label>
         <input id="title" type="text" placeholder="제목" v-model="title" />

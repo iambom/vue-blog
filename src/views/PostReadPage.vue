@@ -104,6 +104,7 @@ export default {
     deleteItem() {
       if (confirm('삭제하시겠습니까?')) {
         const id = this.$route.params.id;
+        console.log(id);
         this.$store.commit('DELETE_ITEM', id);
         this.$router.push('/');
       }

@@ -1,8 +1,9 @@
 <template>
   <loading-spinner v-if="isLoading"></loading-spinner>
-
-  <div class="app-contents" v-else>
+  <div id="wrap" v-else>
+    <!-- <div class="app-contents"> -->
     <router-view></router-view>
+    <!-- </div> -->
   </div>
 </template>
 
