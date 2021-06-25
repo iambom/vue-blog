@@ -17,7 +17,9 @@
             <input id="password" type="password" v-model="password" />
           </div>
         </div>
-        <button class="btn-sign" type="submit">로그인</button>
+        <button class="btn-sign" type="submit" @click.prevent="login">
+          로그인
+        </button>
       </form>
       <p class="text">또는, 다른 계정으로 로그인</p>
       <div class="btn-wrap">
@@ -47,8 +49,8 @@ export default {
     },
   },
   methods: {
-    login() {
-      loginUser();
+    login(event) {
+      loginUser(event, this.email, this.password);
     },
   },
 };

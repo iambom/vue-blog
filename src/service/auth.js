@@ -14,27 +14,37 @@ function signupUser(email, password, displayName) {
     .catch(error => console.log(error));
 }
 
-function loginUser() {
-  // const provider = new firebase.auth.GoogleAuthProvider();
-  firebaseAuth
-    .signInWithPopup(googleProvider)
-    .then(result => {
-      const userData = {
-        username: result.additionalUserInfo.profile.name,
-        uid: result.user.uid,
-        profileImage: result.additionalUserInfo.profile.picture,
-      };
-      store.commit('SET_USER', userData);
-      router.push({
-        path: 'main',
-        name: 'AuthMain',
-        params: {
+function loginUser(event, email, password) {
+  if (event.target.className === 'btn-sign') {
+    firebaseAuth
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch(error => console.log(error));
+  } else {
+    // const provider = new firebase.auth.GoogleAuthProvider();
+    firebaseAuth
+      .signInWithPopup(googleProvider)
+      .then(result => {
+        const userData = {
+          username: result.additionalUserInfo.profile.name,
           uid: result.user.uid,
-        },
-      });
-      return result;
-    })
-    .catch(error => console.log('로그인 실패 ', error));
+          profileImage: result.additionalUserInfo.profile.picture,
+        };
+        store.commit('SET_USER', userData);
+        router.push({
+          path: 'main',
+          name: 'AuthMain',
+          params: {
+            uid: result.user.uid,
+          },
+        });
+        return result;
+      })
+      .catch(error => console.log('로그인 실패 ', error));
+  }
 }
 
 function logoutUser() {
