@@ -1,5 +1,5 @@
 <template>
-  <div class="app-contents">
+  <div class="app-contents home">
     <loading-spinner v-if="isLoading"></loading-spinner>
 
     <template v-else>

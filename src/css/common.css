@@ -2,17 +2,17 @@
 #wrap{
     width:100%;
     height: 100%;
-    /* background-color: rgb(245, 245, 245); */
-    /* background-color: #fff; */
 }
 .app-contents {
     max-width: 1020px;
     margin: 0 auto;
-    padding: 20px 20px 60px;
     width: 100%;  
     min-height: 100%;
-    background-color: rgb(245, 245, 245);
     position: relative;
+}
+.app-contents.home {
+    padding: 20px 20px 60px;
+    background-color: rgb(245, 245, 245);
 }
 .btn-go-home {
     display: block;
@@ -47,23 +47,19 @@
 .main-text {
     color: dimgray;
     font-size: 1.2rem;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     font-weight: bold;
-}
-.sign-form-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
 }
 .sign-form-container{
     max-width: 720px;
     width: 100%;
     margin: 0 auto;
+    padding: 0 30px;
     text-align: center;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 .form.sign {
     text-align: center;
@@ -101,7 +97,7 @@
 }
 .sign-form-container .text{
     color: gray;
-    font-size: 0.8rem;;
+    font-size: 0.7rem;;
     margin-top: 2rem;
 }
 .sign-form-container .btn-wrap{
@@ -125,6 +121,17 @@
 }
 .sign-form-container .btn-wrap .google {
     background-image: url('../assets/google.png');
+}
+.sign-form-container .sign-up-wrap{
+    margin-top: 3rem;
+    font-size: 0.8rem;
+}
+.sign-form-container .sign-up-wrap span{
+    color: gray;
+}
+.sign-form-container .sign-up-wrap a{
+    font-size: 0.9rem;
+    text-decoration: underline;
 }
 /*--- HEADER ---*/
 header {
