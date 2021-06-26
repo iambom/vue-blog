@@ -61,6 +61,9 @@ export default {
   CLEAR_POSTITEM(state) {
     state.postItem = null;
   },
+  CLEAR_TAGS(state) {
+    state.tags = [];
+  },
   SAVE_EDITITEM(state, payload) {
     const index = state.items.findIndex(i => i.id === payload.id);
     state.items.splice(index, 1, payload.editItem);

@@ -66,7 +66,8 @@ function onAuthChange() {
         const userData = {
           username: user.displayName,
           uid: user.uid,
-          profileImage: user.photoURL !== null ? user.photoURL : '',
+          profileImage:
+            user.photoURL !== null ? user.photoURL : 'static/assets/mask.jpg',
         };
         store.commit('SET_USER', userData);
         if (router.history.current.path === '/login') {

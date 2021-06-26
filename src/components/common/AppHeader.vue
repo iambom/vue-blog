@@ -45,6 +45,7 @@ export default {
   methods: {
     logout() {
       logoutUser();
+      this.$store.commit('CLEAR_TAGS');
       this.$router.push('/login');
     },
     toggleButton() {
