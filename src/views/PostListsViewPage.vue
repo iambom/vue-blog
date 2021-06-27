@@ -30,7 +30,7 @@ export default {
       this.getHashtags(this.postItems);
       this.$store.commit('SET_ITEMS', this.postItems);
 
-      // 해시태그 클릭 시 리스트에서 해당 해시태그 있는 리스트들 찾고 state에 저장
+      // 해시태그 클릭 시 리스트에서 해당 해시태그 있는 리스트들 찾고 state의 list에 저장
       if (this.$route.name === 'Hashtag') {
         this.postItems = this.postItems.filter(item => {
           return item.contents.includes(`#${this.$route.params.word}`);

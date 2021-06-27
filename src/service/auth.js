@@ -2,6 +2,8 @@ import { firebaseAuth, googleProvider } from '@/service/firebase';
 import store from '@/store/index';
 import router from '@/routes/index';
 
+const sampleProfileImage = process.env.VUE_APP_PROFILE_SAMPLE;
+
 function signupUser(email, password, displayName) {
   firebaseAuth
     .createUserWithEmailAndPassword(email, password)
@@ -18,11 +20,8 @@ function loginUser(event, email, password) {
   if (event.target.className === 'btn-sign') {
     firebaseAuth
       .signInWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch(error => console.log(error));
+      .then(() => console.log('로그인 성공'))
+      .catch(error => console.log('Error!', error.message));
   } else {
     // const provider = new firebase.auth.GoogleAuthProvider();
     firebaseAuth
@@ -55,7 +54,6 @@ function logoutUser() {
 function onAuthChange() {
   firebaseAuth.onAuthStateChanged(user => {
     if (user) {
-      console.log(user);
       if (router.history.current.path === '/signup') {
         store.commit('SET_LOADING', true);
         firebaseAuth.signOut();
@@ -67,7 +65,7 @@ function onAuthChange() {
           username: user.displayName,
           uid: user.uid,
           profileImage:
-            user.photoURL !== null ? user.photoURL : 'static/assets/mask.jpg',
+            user.photoURL !== null ? user.photoURL : sampleProfileImage,
         };
         store.commit('SET_USER', userData);
         if (router.history.current.path === '/login') {

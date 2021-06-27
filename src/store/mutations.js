@@ -21,6 +21,7 @@ export default {
     state.imageFileName.push(imageFileName);
   },
   SET_TAGS(state, tags) {
+    // state.tag = [];
     let tagArray = [];
     tagArray.push(tags);
     tagArray.forEach(element => {
@@ -77,7 +78,6 @@ export default {
     const deleteItem = state.items.filter(item => item.id === id)[0];
     const remainItems = state.items.filter(item => item.id !== id);
     state.items = remainItems;
-    console.log(deleteItem);
     removeData(state.user.uid, deleteItem);
   },
 };

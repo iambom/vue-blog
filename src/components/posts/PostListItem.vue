@@ -4,7 +4,7 @@
       <div class="txt-wrap">
         <div class="user-info">
           <div>
-            <img src="@/assets/mask.jpg" alt="사용자 프로필 이미지" />
+            <img :src="profileImage" alt="사용자 프로필 이미지" />
           </div>
           <div>
             <span>{{ postItem.name }}</span>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       thumbnail: '',
+      profileImage: this.$store.state.user.profileImage,
     };
   },
   computed: {

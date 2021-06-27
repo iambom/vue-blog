@@ -79,6 +79,14 @@ export default {
       this.imageFileInfo = imageFileInfo;
       this.$store.commit('SET_IMAGE_FILE_NAME', this.imageFileInfo.fileName);
     },
+    // 해쉬태그(#) 구별하여 저장
+    convertToHashTag() {
+      this.contents.split(/(#[^\s]+)/g).map(value => {
+        if (value.match(/#[^\s]+/)) {
+          this.$store.commit('SET_TAGS', value);
+        }
+      });
+    },
     submitForm() {
       // 포스트의 id, 작성자, 최초 게시날짜는 그대로 두고 수정한 부분만 다시 저장
       if (this.title && this.contents !== '') {
@@ -91,8 +99,9 @@ export default {
           publishedAt,
           imageFileInfo: this.imageFileInfo,
         };
-
+        this.$store.commit('CLEAR_TAGS');
         this.$store.commit('SAVE_EDITITEM', { editItem, id });
+        this.convertToHashTag();
         this.$router.push('/');
       }
     },
