@@ -23,7 +23,7 @@
       </form>
       <p class="text">또는, 다른 계정으로 로그인</p>
       <div class="btn-wrap">
-        <button class="github">github 로그인</button>
+        <button class="facebook" @click="login">github 로그인</button>
         <button class="google" @click="login">Google 로그인</button>
       </div>
       <div class="sign-up-wrap">
@@ -50,7 +50,8 @@ export default {
   },
   methods: {
     login(event) {
-      loginUser(event, this.email, this.password);
+      const loginType = event.target.className;
+      loginUser(loginType, this.email, this.password);
     },
   },
 };

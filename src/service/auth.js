@@ -1,4 +1,8 @@
-import { firebaseAuth, googleProvider } from '@/service/firebase';
+import {
+  firebaseAuth,
+  facebookProvider,
+  googleProvider,
+} from '@/service/firebase';
 import store from '@/store/index';
 import router from '@/routes/index';
 
@@ -16,16 +20,16 @@ function signupUser(email, password, displayName) {
     .catch(error => console.log(error));
 }
 
-function loginUser(event, email, password) {
-  if (event.target.className === 'btn-sign') {
+function loginUser(loginType, email, password) {
+  if (loginType === 'btn-sign') {
     firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then(() => console.log('로그인 성공'))
       .catch(error => console.log('Error!', error.message));
   } else {
-    // const provider = new firebase.auth.GoogleAuthProvider();
+    const authProvider = getProvider(loginType);
     firebaseAuth
-      .signInWithPopup(googleProvider)
+      .signInWithPopup(authProvider)
       .then(result => {
         const userData = {
           username: result.additionalUserInfo.profile.name,
@@ -42,7 +46,18 @@ function loginUser(event, email, password) {
         });
         return result;
       })
-      .catch(error => console.log('로그인 실패 ', error));
+      .catch(error => console.log('로그인 실패 ', error.message));
+  }
+}
+
+function getProvider(providerName) {
+  switch (providerName) {
+    case 'google':
+      return googleProvider;
+    case 'facebook':
+      return facebookProvider;
+    default:
+      throw new Error(`not supported provider : ${providerName}`);
   }
 }
 
