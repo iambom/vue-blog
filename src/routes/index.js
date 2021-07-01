@@ -62,6 +62,8 @@ router.beforeEach((to, from, next) => {
   } else {
     store.commit('SHOW_GO_HOME_BTN', true);
   }
+
+  window.scrollTo(0, 0);
   next();
 });
 

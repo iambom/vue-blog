@@ -1,14 +1,15 @@
 <template>
   <header v-if="isUserLogin">
     <div class="user-info">
-      <div class="img-wrap" @click="toggleButton">
-        <img :src="profileImage" alt="profile" />
+      <div class="img-wrap">
+        <img :src="profileImage" alt="profile" @click="toggleButton" />
         <button
           @click="logout"
           class="btn-logout"
           :class="{ visible: visibleBtnLogout }"
         >
-          로그아웃
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
         </button>
       </div>
       <p class="username">
