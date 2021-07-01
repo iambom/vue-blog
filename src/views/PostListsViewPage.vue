@@ -21,7 +21,6 @@ export default {
   mounted() {
     this.$store.commit('CLEAR_POSTITEM');
     const userId = this.$store.state.user.uid;
-    console.log('3');
 
     // 랜딩 시 파이어베이스 DB에 저장되어 있는 데이터 불러와서 state에 저장
     syncData(userId, data => {

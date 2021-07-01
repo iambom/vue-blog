@@ -86,7 +86,6 @@ function onAuthChange() {
         if (router.history.current.path === '/login') {
           router.push('/');
         }
-        console.log('2');
       }
     } else {
       // 로그인 하지 않은 경우
