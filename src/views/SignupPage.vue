@@ -8,5 +8,3 @@ export default {
   components: { SignupForm },
 };
 </script>
-
-<style></style>

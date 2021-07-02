@@ -1,9 +1,7 @@
 <template>
   <loading-spinner v-if="isLoading"></loading-spinner>
   <div id="wrap" v-else>
-    <!-- <div class="app-contents"> -->
     <router-view></router-view>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -27,7 +25,7 @@ export default {
       if (value && value !== null) this.$store.commit('SET_LOADING', false);
     },
   },
-  mounted() {
+  created() {
     this.$store.commit('SET_LOADING', true);
     onAuthChange(); // 새로고침 해도 로그인 인증 유지
   },

@@ -18,7 +18,7 @@ export default {
       postItems: [],
     };
   },
-  mounted() {
+  created() {
     this.$store.commit('CLEAR_POSTITEM');
     const userId = this.$store.state.user.uid;
 
@@ -62,5 +62,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

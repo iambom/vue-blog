@@ -21,7 +21,6 @@ export default {
     state.imageFileName.push(imageFileName);
   },
   SET_TAGS(state, tags) {
-    // state.tag = [];
     let tagArray = [];
     tagArray.push(tags);
     tagArray.forEach(element => {

@@ -69,6 +69,7 @@ export default {
   // 데이터 불러 오는 것보다 화면 렌더링이 먼저 일어나서 사용
   watch: {
     getData(setItem) {
+      console.log(setItem);
       if (setItem) {
         const postItem = this.$store.state.postItem;
         this.title = postItem.title;
@@ -112,5 +113,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

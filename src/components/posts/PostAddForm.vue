@@ -51,7 +51,6 @@ export default {
     },
     async onFileChange(event) {
       const uploaded = await imageUpload(event.target.files[0]);
-      console.log(uploaded);
       const { original_filename, format, url, width, height } = uploaded;
       const imageFileInfo = {
         fileName: original_filename,
@@ -99,5 +98,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
