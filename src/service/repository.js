@@ -10,11 +10,14 @@ function removeData(userId, postItem) {
 
 function syncData(userId, onUpdate) {
   const ref = firebaseDatabase.ref(`${userId}/posts/`);
-
-  ref.on('value', snapshot => {
-    const value = snapshot.val();
-    value && onUpdate(value);
-  });
+  ref.on(
+    'value',
+    snapshot => {
+      const value = snapshot.val();
+      value && onUpdate(value);
+    },
+    error => console.log(error),
+  );
 
   return () => ref.off();
 }

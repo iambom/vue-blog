@@ -329,7 +329,10 @@ header .create-button span{
 .read-container .btn-wrap button{
     color: gray
 }
-
+.read-container .modal-footer .btn-remove {
+    color: red;
+    margin: 0 5px;
+  }
 /*--- TAGS ---*/
 .tags-container{
     display: flex;

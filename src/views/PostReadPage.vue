@@ -25,10 +25,18 @@
           <button class="btn-edit" @click="editItem">
             <i class="far fa-edit"></i>
           </button>
-          <button class="btn-delete" @click="deleteItem">
+          <button class="btn-delete" @click="clickRemoveBtn">
             <i class="far fa-trash-alt"></i>
           </button>
         </div>
+
+        <Modal v-if="showModal" @close="showModal = false">
+          <div slot="body">정말 삭제하시겠습니까?</div>
+          <div slot="footer">
+            <button class="btn-remove" @click="removeItem">삭제</button>
+            <button class="btn-cancel" @click="showModal = false">취소</button>
+          </div>
+        </Modal>
       </div>
       <post-edit-form v-else></post-edit-form>
     </template>
@@ -38,11 +46,13 @@
 <script>
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import PostEditForm from '@/components/posts/PostEditForm';
+import Modal from '@/components/common/Modal.vue';
 export default {
   name: 'PostReadPage',
   components: {
     PostEditForm,
     LoadingSpinner,
+    Modal,
   },
   data() {
     return {
@@ -53,6 +63,7 @@ export default {
       hashtags: [],
       mode: 'read',
       isImageFile: false,
+      showModal: false,
     };
   },
   computed: {
@@ -69,7 +80,6 @@ export default {
   // 데이터 불러 오는 것보다 화면 렌더링이 먼저 일어나서 사용
   watch: {
     getData(setItem) {
-      console.log(setItem);
       if (setItem) {
         const postItem = this.$store.state.postItem;
         this.title = postItem.title;
@@ -102,13 +112,17 @@ export default {
     editItem() {
       this.mode = 'edit';
     },
-    deleteItem() {
-      if (confirm('삭제하시겠습니까?')) {
-        const id = this.$route.params.id;
-        this.$store.commit('DELETE_ITEM', id);
-        this.$store.commit('CLEAR_TAGS');
-        this.$router.push('/');
+    clickRemoveBtn(event) {
+      this.showModal = !this.showModal;
+      if (event.target.className === 'btn-remove') {
+        this.removeItem();
       }
+    },
+    removeItem() {
+      const id = this.$route.params.id;
+      this.$store.commit('DELETE_ITEM', id);
+      this.$store.commit('CLEAR_TAGS');
+      this.$router.push('/');
     },
   },
 };
