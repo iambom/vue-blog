@@ -26,21 +26,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { logoutUser } from '@/service/auth';
 export default {
   data() {
     return {
-      profileImage: this.$store.state.user.profileImage,
-      username: this.$store.state.user.username,
       visibleBtnLogout: false,
     };
   },
   computed: {
+    ...mapState({
+      showAddBtn: state => state.showAddBtn,
+      profileImage: state => state.user.profileImage,
+      username: state => state.user.username,
+    }),
     isUserLogin() {
       return this.$store.getters.isLogin;
-    },
-    showAddBtn() {
-      return this.$store.state.showAddBtn;
     },
   },
   methods: {

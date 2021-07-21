@@ -14,10 +14,10 @@ export default {
   components: {
     TagsListItem,
   },
-  data() {
-    return {
-      tags: this.$store.state.tags,
-    };
+  computed: {
+    tags() {
+      return this.$store.state.tags;
+    },
   },
 };
 </script>

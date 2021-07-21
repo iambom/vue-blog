@@ -1,5 +1,5 @@
 <template>
-  <li :class="{ active: tagname === this.$route.params.word }">
+  <li :class="{ active: tagname === selectedTag }">
     <router-link :to="`/hashtag/${tagname}`">
       {{ tag }}
     </router-link>
@@ -12,6 +12,9 @@ export default {
   computed: {
     tagname() {
       return this.tag.slice(1);
+    },
+    selectedTag() {
+      return this.$route.params.word;
     },
   },
 };

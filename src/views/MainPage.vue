@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import AppHeader from '@/components/common/AppHeader.vue';
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import TagsListPage from '@/views/TagsListPage.vue';
@@ -27,17 +28,13 @@ export default {
     TagsListPage,
   },
   computed: {
+    ...mapState({
+      isLoading: state => state.isLoading,
+      showTagList: state => state.showTaglist,
+      showGoHomeBtn: state => state.showGoHomeBtn,
+    }),
     isUserLogin() {
       return this.$store.getters.isLogin;
-    },
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
-    showTagList() {
-      return this.$store.state.showTaglist;
-    },
-    showGoHomeBtn() {
-      return this.$store.state.showGoHomeBtn;
     },
   },
   watch: {
