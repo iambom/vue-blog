@@ -17,7 +17,7 @@
         >님
       </p>
     </div>
-    <div class="create-button-wrap" v-if="showAddBtn">
+    <div class="create-button-wrap" v-if="isAddBtn">
       <router-link to="/add" class="create-button">
         <i class="fas fa-pen"><span>+</span></i>
       </router-link>
@@ -29,6 +29,12 @@
 import { mapState } from 'vuex';
 import { logoutUser } from '@/service/auth';
 export default {
+  props: {
+    routeName: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       visibleBtnLogout: false,
@@ -36,18 +42,19 @@ export default {
   },
   computed: {
     ...mapState({
-      showAddBtn: state => state.showAddBtn,
       profileImage: state => state.user.profileImage,
       username: state => state.user.username,
     }),
     isUserLogin() {
       return this.$store.getters.isLogin;
     },
+    isAddBtn() {
+      return this.routeName !== 'AddPage';
+    },
   },
   methods: {
     logout() {
       logoutUser();
-      // this.$router.push('/login');
       this.$store.commit('CLEAR_TAGS');
     },
     toggleButton() {
