@@ -13,6 +13,14 @@ import PostListItem from '@/components/posts/PostListItem.vue';
 import { syncData } from '@/service/repository';
 export default {
   name: 'AuthMain',
+  components: {
+    PostListItem,
+  },
+  computed: {
+    isUserLogin() {
+      return this.$store.getters.isLogin;
+    },
+  },
   data() {
     return {
       postItems: [],
@@ -40,14 +48,6 @@ export default {
     });
 
     this.$store.commit('SET_LOADING', false);
-  },
-  components: {
-    PostListItem,
-  },
-  computed: {
-    isUserLogin() {
-      return this.$store.getters.isLogin;
-    },
   },
   methods: {
     getHashtags(postItems) {

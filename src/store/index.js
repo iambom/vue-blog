@@ -17,9 +17,9 @@ export default new Vuex.Store({
     tags: [],
     filteredTag: [],
     isLoading: false,
-    showTaglist: false,
-    showAddBtn: false,
-    showGoHomeBtn: false,
+    showTaglist: true,
+    showAddBtn: true,
+    showGoHomeBtn: true,
   },
   getters: {
     isLogin(state) {

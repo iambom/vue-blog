@@ -6,7 +6,7 @@ Vue.js 공부한 것을 바탕으로 blog app을 구현해보았습니다.
 
 
  ## 🛠 Skill & Tool
- **`HTML5`**  **`CSS3`**  **`Javascript`**  **`Vue.js`**  **`npm`** **`firebase`** **`cloudinary`** **`fontawesome`**
+ **`HTML5`**  **`CSS3`**  **`Javascript`**  **`Vue.js`**  **`firebase`** **`cloudinary`** **`fontawesome`**
  
 ## 💡 기능
 ### Firebase Authentication을 이용한 회원가입 및 로그인, 인증 유지 🔒

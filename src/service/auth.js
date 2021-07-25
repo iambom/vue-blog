@@ -37,13 +37,6 @@ function loginUser(loginType, email, password) {
           profileImage: result.additionalUserInfo.profile.picture,
         };
         store.commit('SET_USER', userData);
-        router.push({
-          path: 'main',
-          name: 'AuthMain',
-          params: {
-            uid: result.user.uid,
-          },
-        });
         return result;
       })
       .catch(error => console.log('로그인 실패 ', error.message));
