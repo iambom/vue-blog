@@ -12,13 +12,28 @@ export default {
     };
   },
   CHECK_VALUE(state, errorCode) {
-    if (errorCode === 'auth/invalid-email') {
-      state.passwordValidText = '';
-      state.emailValidText = '타당하지 않은 이메일 형식입니다.';
-    } else if (errorCode === 'auth/weak-password') {
-      state.emailValidText = '';
-      state.passwordValidText =
-        '비밀번호가 취약합니다. 특수문자를 조합해주세요';
+    switch (errorCode) {
+      case 'auth/invalid-email':
+        state.passwordValidText = '';
+        state.emailValidText = '타당하지 않은 이메일 형식입니다.';
+        break;
+      case 'auth/weak-password':
+        state.emailValidText = '';
+        state.passwordValidText =
+          '비밀번호가 취약합니다. 특수문자를 조합해주세요';
+        break;
+      case 'auth/user-not-found':
+        state.passwordValidText = '';
+        state.emailValidText = '가입하지 않은 회원입니다.';
+        break;
+      case 'auth/wrong-password':
+        state.emailValidText = '';
+        state.passwordValidText = '비밀번호가 틀렸습니다.';
+        break;
+      case 'nothing':
+        state.emailValidText = '';
+        state.passwordValidText = '';
+        break;
     }
   },
   CLEAR_VALUE(state, target) {

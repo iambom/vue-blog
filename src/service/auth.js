@@ -25,8 +25,8 @@ function loginUser(loginType, email, password) {
   if (loginType === 'btn-sign') {
     firebaseAuth
       .signInWithEmailAndPassword(email, password)
-      .then(() => console.log('로그인 성공'))
-      .catch(error => console.log('Error!', error.message));
+      .then(() => store.commit('CHECK_VALUE', 'nothing'))
+      .catch(error => store.commit('CHECK_VALUE', error.code));
   } else {
     const authProvider = getProvider(loginType);
     firebaseAuth
@@ -67,6 +67,7 @@ function onAuthChange() {
         store.commit('SET_LOADING', true);
         firebaseAuth.signOut();
         store.commit('SET_LOADING', false);
+        store.commit('CHECK_VALUE', 'nothing');
         router.push('/login');
       } else {
         // 로그인 된 경우

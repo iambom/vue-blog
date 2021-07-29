@@ -11,7 +11,7 @@ PC에 최적화 되어 있습니다.
  
 ## 💡 기능
 ### Firebase Authentication을 이용한 회원가입 및 로그인, 인증 유지 🔒
- - email, password로 회원가입 후 로그인
+ - email, password로 회원가입 후 로그인이 가능하고 파이어베이스에서 보내주는 에러 코드를 활용하여 유효성 검사 수행
  - 구글과 페이스북 계정을 통한 로그인
  - 페이지 새로고침 시 로그인 되어 있는 경우 로그인 유지
     
@@ -31,7 +31,7 @@ PC에 최적화 되어 있습니다.
 ![vue-blog-crud](https://user-images.githubusercontent.com/57257023/127282299-40356b68-d0c8-43ac-9fe9-fd9e77cb4ea8.gif)
 
  
-## 📖 프로젝트를 하며 배운 것
+## 📖 프로젝트를 하며 공부한 것
  - **computed 속성의 함수명과 watch 속성의 함수명이 동일하면 computed에서 데이터가 변경될 경우 watch에서 응답한다.**
  
     ```
