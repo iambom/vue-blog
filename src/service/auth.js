@@ -57,7 +57,6 @@ function getProvider(providerName) {
 
 function logoutUser() {
   firebaseAuth.signOut();
-  store.commit('CLEAR_USER');
 }
 
 function onAuthChange() {
@@ -85,6 +84,7 @@ function onAuthChange() {
     } else {
       // 로그인 하지 않은 경우
       if (router.history.current.path !== '/login') {
+        store.commit('CLEAR_USER');
         router.push('/login');
       }
       store.commit('SET_LOADING', false);
