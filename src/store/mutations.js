@@ -11,6 +11,23 @@ export default {
       uid: payload.uid,
     };
   },
+  CHECK_VALUE(state, errorCode) {
+    if (errorCode === 'auth/invalid-email') {
+      state.passwordValidText = '';
+      state.emailValidText = '타당하지 않은 이메일 형식입니다.';
+    } else if (errorCode === 'auth/weak-password') {
+      state.emailValidText = '';
+      state.passwordValidText =
+        '비밀번호가 취약합니다. 특수문자를 조합해주세요';
+    }
+  },
+  CLEAR_VALUE(state, target) {
+    if (target === 'email') {
+      state.emailValidText = '';
+    } else {
+      state.passwordValidText = '';
+    }
+  },
   CLEAR_USER(state) {
     state.user = null;
   },

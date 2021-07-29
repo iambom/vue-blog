@@ -1,6 +1,7 @@
 # Vue-blog
 
-Vue.js 공부한 것을 바탕으로 blog app을 구현해보았습니다.
+Vue.js 공부한 것을 바탕으로 blog app을 구현해보았습니다. 
+PC에 최적화 되어 있습니다.
 
 💻  <https://bomin-vue-blog.netlify.app/>
 

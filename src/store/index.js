@@ -17,6 +17,8 @@ export default new Vuex.Store({
     tags: [],
     filteredTag: [],
     isLoading: false,
+    emailValidText: '',
+    passwordValidText: '',
   },
   getters: {
     isLogin(state) {

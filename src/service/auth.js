@@ -15,9 +15,10 @@ function signupUser(email, password, displayName) {
       userCredential.user.updateProfile({
         displayName,
       });
-      alert('회원 가입 완료!');
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      store.commit('CHECK_VALUE', error.code);
+    });
 }
 
 function loginUser(loginType, email, password) {

@@ -98,6 +98,7 @@ export default {
   created() {
     const id = this.$route.params.id;
     this.$store.commit('GET_POSTITEM', id);
+    window.scrollTo(0, 0);
   },
   methods: {
     // 해시태그(#) 클릭 하면 링크 이동 하기 위한 필터링
@@ -123,6 +124,7 @@ export default {
       this.$store.commit('DELETE_ITEM', id);
       this.$store.commit('CLEAR_TAGS');
       this.$router.push('/');
+      window.scrollTo(0, 0);
     },
   },
 };
