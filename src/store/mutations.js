@@ -11,7 +11,7 @@ export default {
       uid: payload.uid,
     };
   },
-  CHECK_VALUE(state, errorCode) {
+  VALIDATE_INPUT(state, errorCode) {
     switch (errorCode) {
       case 'auth/invalid-email':
         state.passwordValidText = '';
@@ -36,7 +36,7 @@ export default {
         break;
     }
   },
-  CLEAR_VALUE(state, target) {
+  CLEAR_INPUT(state, target) {
     if (target === 'email') {
       state.emailValidText = '';
     } else {

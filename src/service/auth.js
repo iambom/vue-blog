@@ -17,7 +17,7 @@ function signupUser(email, password, displayName) {
       });
     })
     .catch(error => {
-      store.commit('CHECK_VALUE', error.code);
+      store.commit('VALIDATE_INPUT', error.code);
     });
 }
 
@@ -25,8 +25,8 @@ function loginUser(loginType, email, password) {
   if (loginType === 'btn-sign') {
     firebaseAuth
       .signInWithEmailAndPassword(email, password)
-      .then(() => store.commit('CHECK_VALUE', 'nothing'))
-      .catch(error => store.commit('CHECK_VALUE', error.code));
+      .then(() => store.commit('VALIDATE_INPUT', 'nothing'))
+      .catch(error => store.commit('VALIDATE_INPUT', error.code));
   } else {
     const authProvider = getProvider(loginType);
     firebaseAuth
@@ -67,7 +67,7 @@ function onAuthChange() {
         store.commit('SET_LOADING', true);
         firebaseAuth.signOut();
         store.commit('SET_LOADING', false);
-        store.commit('CHECK_VALUE', 'nothing');
+        store.commit('VALIDATE_INPUT', 'nothing');
         router.push('/login');
       } else {
         // 로그인 된 경우

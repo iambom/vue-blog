@@ -67,7 +67,7 @@ export default {
     },
     focusInput(event) {
       if (this.isEmailValid || this.isPasswordValid) {
-        this.$store.commit('CLEAR_VALUE', event.target.id);
+        this.$store.commit('CLEAR_INPUT', event.target.id);
       }
     },
   },
