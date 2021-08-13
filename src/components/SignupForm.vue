@@ -40,12 +40,23 @@
         </button>
       </form>
     </div>
+
+    <Modal v-if="showModal" @close="showModal = false">
+      <div slot="body">회원가입 완료</div>
+      <div slot="footer">
+        <button class="btn-cancel" @click="modalCheck">확인</button>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from '@/components/common/Modal.vue';
 import { signupUser } from '@/service/auth';
 export default {
+  components: {
+    Modal,
+  },
   data() {
     return {
       email: '',
@@ -60,6 +71,9 @@ export default {
     isPasswordValid() {
       return this.$store.state.passwordValidText;
     },
+    showModal() {
+      return this.$store.state.showModal;
+    },
   },
   methods: {
     signup() {
@@ -69,6 +83,10 @@ export default {
       if (this.isEmailValid || this.isPasswordValid) {
         this.$store.commit('CLEAR_INPUT', event.target.id);
       }
+    },
+    modalCheck() {
+      this.$store.commit('SHOW_MODAL', false);
+      this.$router.push('/login');
     },
   },
 };

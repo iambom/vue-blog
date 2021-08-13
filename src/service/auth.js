@@ -15,6 +15,7 @@ function signupUser(email, password, displayName) {
       userCredential.user.updateProfile({
         displayName,
       });
+      store.commit('SHOW_MODAL', true);
     })
     .catch(error => {
       store.commit('VALIDATE_INPUT', error.code);
@@ -63,11 +64,8 @@ function onAuthChange() {
   firebaseAuth.onAuthStateChanged(user => {
     if (user) {
       if (router.history.current.path === '/signup') {
-        store.commit('SET_LOADING', true);
         firebaseAuth.signOut();
-        store.commit('SET_LOADING', false);
         store.commit('VALIDATE_INPUT', 'nothing');
-        router.push('/login');
       } else {
         // 로그인 된 경우
         const userData = {
@@ -82,8 +80,11 @@ function onAuthChange() {
         }
       }
     } else {
-      // 로그인 하지 않은 경우
-      if (router.history.current.path !== '/login') {
+      // 로그인 하지 않은 경우 (로그아웃, 로그인 하지 않고 다른 링크 접속)
+      if (
+        router.history.current.path !== '/login' &&
+        router.history.current.path !== '/signup'
+      ) {
         store.commit('CLEAR_USER');
         router.push('/login');
       }

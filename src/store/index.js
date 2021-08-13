@@ -19,6 +19,7 @@ export default new Vuex.Store({
     isLoading: false,
     emailValidText: '',
     passwordValidText: '',
+    showModal: false,
   },
   getters: {
     isLogin(state) {

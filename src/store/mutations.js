@@ -11,11 +11,18 @@ export default {
       uid: payload.uid,
     };
   },
+  SHOW_MODAL(state, payload) {
+    state.showModal = payload;
+  },
   VALIDATE_INPUT(state, errorCode) {
     switch (errorCode) {
       case 'auth/invalid-email':
         state.passwordValidText = '';
         state.emailValidText = '타당하지 않은 이메일 형식입니다.';
+        break;
+      case 'auth/email-already-in-use':
+        state.passwordValidText = '';
+        state.emailValidText = '이미 존재하는 이메일입니다.';
         break;
       case 'auth/weak-password':
         state.emailValidText = '';
