@@ -16,26 +16,21 @@ export default {
   components: {
     PostListItem,
   },
-  computed: {
-    isUserLogin() {
-      return this.$store.getters.isLogin;
-    },
-  },
   data() {
     return {
       postItems: [],
     };
   },
   created() {
-    this.$store.commit('CLEAR_POSTITEM');
-    const userId = this.$store.state.user.uid;
+    this.$store.commit('postStore/CLEAR_POSTITEM');
+    const userId = this.$store.state.authStore.user.uid;
 
     // 랜딩 시 파이어베이스 DB에 저장되어 있는 데이터 불러와서 state에 저장
     syncData(userId, data => {
       let itemsArray = Object.values(data);
       this.postItems = itemsArray;
       this.getHashtags(this.postItems);
-      this.$store.commit('SET_ITEMS', this.postItems);
+      this.$store.commit('postStore/SET_ITEMS', this.postItems);
 
       // 해시태그 클릭 시 리스트에서 해당 해시태그 있는 리스트들 찾고 state의 list에 저장
       if (this.$route.name === 'Hashtag') {
@@ -47,14 +42,14 @@ export default {
       if (this.postItems.length === 0) this.$router.push('/');
     });
 
-    this.$store.commit('SET_LOADING', false);
+    this.$store.commit('common/SET_LOADING', false);
   },
   methods: {
     getHashtags(postItems) {
       postItems.map(item => {
         item.contents.split(/(#[^\s]+)/g).map(value => {
           if (value.match(/#[^\s]+/)) {
-            this.$store.commit('SET_TAGS', value);
+            this.$store.commit('postStore/SET_TAGS', value);
           }
         });
       });

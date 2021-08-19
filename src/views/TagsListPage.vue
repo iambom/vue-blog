@@ -9,15 +9,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import TagsListItem from '@/components/TagsListItem.vue';
 export default {
   components: {
     TagsListItem,
   },
   computed: {
-    tags() {
-      return this.$store.state.tags;
-    },
+    ...mapGetters('postStore', ['tags']),
   },
 };
 </script>

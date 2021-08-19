@@ -6,27 +6,30 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { onAuthChange } from '@/service/auth';
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
+
 export default {
   components: {
     LoadingSpinner,
   },
   computed: {
-    isUserLogin() {
-      return this.$store.getters.isLogin;
-    },
+    ...mapGetters('authStore', {
+      isUserLogin: 'isLogin',
+    }),
     isLoading() {
-      return this.$store.state.isLoading;
+      return this.$store.state.common.isLoading;
     },
   },
   watch: {
     isUserLogin(value) {
-      if (value && value !== null) this.$store.commit('SET_LOADING', false);
+      if (value && value !== null)
+        this.$store.commit('common/SET_LOADING', false);
     },
   },
   created() {
-    this.$store.commit('SET_LOADING', true);
+    this.$store.commit('common/SET_LOADING', true);
     onAuthChange(); // 새로고침 해도 로그인 인증 유지
   },
 };

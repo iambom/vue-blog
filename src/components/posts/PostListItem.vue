@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   props: {
     postItem: {
@@ -33,12 +34,12 @@ export default {
     },
   },
   computed: {
+    ...mapState('authStore', {
+      profileImage: state => state.user.profileImage,
+    }),
     // 포스트 생성 시 등록한 이미지 파일 유무에 따른 썸네일 추가
     isThumbnail() {
       return this.postItem.imageFileInfo;
-    },
-    profileImage() {
-      return this.$store.state.user.profileImage;
     },
   },
 };

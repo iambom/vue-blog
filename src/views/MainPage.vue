@@ -18,10 +18,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import AppHeader from '@/components/common/AppHeader.vue';
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import TagsListPage from '@/views/TagsListPage.vue';
+
 export default {
   components: {
     AppHeader,
@@ -29,12 +30,12 @@ export default {
     TagsListPage,
   },
   computed: {
-    ...mapState({
+    ...mapState('common', {
       isLoading: state => state.isLoading,
     }),
-    isUserLogin() {
-      return this.$store.getters.isLogin;
-    },
+    ...mapGetters('authStore', {
+      isUserLogin: 'isLogin',
+    }),
     routeName() {
       return this.$route.name;
     },
@@ -47,7 +48,8 @@ export default {
   },
   watch: {
     isUserLogin(value) {
-      if (value && value !== null) this.$store.commit('SET_LOADING', false);
+      if (value && value !== null)
+        this.$store.commit('common/SET_LOADING', false);
     },
   },
 };

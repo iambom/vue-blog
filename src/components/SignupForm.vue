@@ -51,8 +51,10 @@
 </template>
 
 <script>
-import Modal from '@/components/common/Modal.vue';
+import { mapGetters } from 'vuex';
 import { signupUser } from '@/service/auth';
+import Modal from '@/components/common/Modal.vue';
+
 export default {
   components: {
     Modal,
@@ -65,14 +67,9 @@ export default {
     };
   },
   computed: {
-    isEmailValid() {
-      return this.$store.state.emailValidText;
-    },
-    isPasswordValid() {
-      return this.$store.state.passwordValidText;
-    },
+    ...mapGetters('authStore', ['isEmailValid', 'isPasswordValid']),
     showModal() {
-      return this.$store.state.showModal;
+      return this.$store.state.common.showModal;
     },
   },
   methods: {
@@ -81,11 +78,11 @@ export default {
     },
     focusInput(event) {
       if (this.isEmailValid || this.isPasswordValid) {
-        this.$store.commit('CLEAR_INPUT', event.target.id);
+        this.$store.commit('authStore/CLEAR_INPUT', event.target.id);
       }
     },
     modalCheck() {
-      this.$store.commit('SHOW_MODAL', false);
+      this.$store.commit('common/SHOW_MODAL', false);
       this.$router.push('/login');
     },
   },

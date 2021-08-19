@@ -15,10 +15,11 @@ function signupUser(email, password, displayName) {
       userCredential.user.updateProfile({
         displayName,
       });
-      store.commit('SHOW_MODAL', true);
+      store.commit('common/SHOW_MODAL', true);
     })
     .catch(error => {
-      store.commit('VALIDATE_INPUT', error.code);
+      console.log(error.code);
+      store.commit('authStore/VALIDATE_INPUT', error.code);
     });
 }
 
@@ -26,8 +27,8 @@ function loginUser(loginType, email, password) {
   if (loginType === 'btn-sign') {
     firebaseAuth
       .signInWithEmailAndPassword(email, password)
-      .then(() => store.commit('VALIDATE_INPUT', 'nothing'))
-      .catch(error => store.commit('VALIDATE_INPUT', error.code));
+      .then(() => store.commit('authStore/VALIDATE_INPUT', 'nothing'))
+      .catch(error => store.commit('authStore/VALIDATE_INPUT', error.code));
   } else {
     const authProvider = getProvider(loginType);
     firebaseAuth
@@ -38,7 +39,7 @@ function loginUser(loginType, email, password) {
           uid: result.user.uid,
           profileImage: result.additionalUserInfo.profile.picture,
         };
-        store.commit('SET_USER', userData);
+        store.commit('authStore/SET_USER', userData);
         return result;
       })
       .catch(error => console.log('로그인 실패 ', error.message));
@@ -65,7 +66,7 @@ function onAuthChange() {
     if (user) {
       if (router.history.current.path === '/signup') {
         firebaseAuth.signOut();
-        store.commit('VALIDATE_INPUT', 'nothing');
+        store.commit('authStore/VALIDATE_INPUT', 'nothing');
       } else {
         // 로그인 된 경우
         const userData = {
@@ -74,7 +75,7 @@ function onAuthChange() {
           profileImage:
             user.photoURL !== null ? user.photoURL : sampleProfileImage,
         };
-        store.commit('SET_USER', userData);
+        store.commit('authStore/SET_USER', userData);
         if (router.history.current.path === '/login') {
           router.push('/');
         }
@@ -85,10 +86,10 @@ function onAuthChange() {
         router.history.current.path !== '/login' &&
         router.history.current.path !== '/signup'
       ) {
-        store.commit('CLEAR_USER');
+        store.commit('authStore/CLEAR_USER');
         router.push('/login');
       }
-      store.commit('SET_LOADING', false);
+      store.commit('common/SET_LOADING', false);
     }
   });
 }

@@ -48,7 +48,7 @@ export default {
   created() {
     // edit 페이지 로드 후 포스트의 고유 id를 이용해 저장 되어 있던 컨텐츠 불러오기
     const id = this.$route.params.id;
-    this.$store.commit('GET_POSTITEM', id);
+    this.$store.commit('postStore/GET_POSTITEM', id);
     const postItem = this.$store.state.postItem;
     const { title, contents } = postItem;
     this.title = title;
@@ -77,13 +77,16 @@ export default {
         height,
       };
       this.imageFileInfo = imageFileInfo;
-      this.$store.commit('SET_IMAGE_FILE_NAME', this.imageFileInfo.fileName);
+      this.$store.commit(
+        'postStore/SET_IMAGE_FILE_NAME',
+        this.imageFileInfo.fileName,
+      );
     },
     // 해쉬태그(#) 구별하여 저장
     convertToHashTag() {
       this.contents.split(/(#[^\s]+)/g).map(value => {
         if (value.match(/#[^\s]+/)) {
-          this.$store.commit('SET_TAGS', value);
+          this.$store.commit('postStore/postStore/SET_TAGS', value);
         }
       });
     },
@@ -99,8 +102,8 @@ export default {
           publishedAt,
           imageFileInfo: this.imageFileInfo,
         };
-        this.$store.commit('CLEAR_TAGS');
-        this.$store.commit('SAVE_EDITITEM', { editItem, id });
+        this.$store.commit('postStore/CLEAR_TAGS');
+        this.$store.commit('postStore/SAVE_EDITITEM', { editItem, id });
         this.convertToHashTag();
         this.$router.push('/');
       }

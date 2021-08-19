@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import { logoutUser } from '@/service/auth';
 export default {
   props: {
@@ -41,13 +41,13 @@ export default {
     };
   },
   computed: {
-    ...mapState({
+    ...mapState('authStore', {
       profileImage: state => state.user.profileImage,
       username: state => state.user.username,
     }),
-    isUserLogin() {
-      return this.$store.getters.isLogin;
-    },
+    ...mapGetters('authStore', {
+      isUserLogin: 'isLogin',
+    }),
     isAddBtn() {
       return this.routeName !== 'AddPage';
     },
@@ -55,7 +55,7 @@ export default {
   methods: {
     logout() {
       logoutUser();
-      this.$store.commit('CLEAR_TAGS');
+      this.$store.commit('postStore/CLEAR_TAGS');
     },
     toggleButton() {
       this.visibleBtnLogout

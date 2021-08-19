@@ -47,6 +47,7 @@
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import PostEditForm from '@/components/posts/PostEditForm';
 import Modal from '@/components/common/Modal.vue';
+import { mapGetters } from 'vuex';
 export default {
   name: 'PostReadPage',
   components: {
@@ -67,14 +68,17 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('postStore', {
+      getData: 'getReadData',
+    }),
     readMode() {
       return this.mode === 'read';
     },
-    getData() {
-      return this.$store.getters.getReadData;
-    },
+    // getData() {
+    //   return this.$store.getters.getReadData;
+    // },
     isLoading() {
-      return this.$store.state.isLoading;
+      return this.$store.state.common.isLoading;
     },
   },
   // 데이터 불러 오는 것보다 화면 렌더링이 먼저 일어나서 사용
@@ -97,7 +101,7 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    this.$store.commit('GET_POSTITEM', id);
+    this.$store.commit('postStore/GET_POSTITEM', id);
     window.scrollTo(0, 0);
   },
   methods: {
@@ -121,8 +125,8 @@ export default {
     },
     removeItem() {
       const id = this.$route.params.id;
-      this.$store.commit('DELETE_ITEM', id);
-      this.$store.commit('CLEAR_TAGS');
+      this.$store.commit('postStore/DELETE_ITEM', id);
+      this.$store.commit('postStore/CLEAR_TAGS');
       this.$router.push('/');
       window.scrollTo(0, 0);
     },

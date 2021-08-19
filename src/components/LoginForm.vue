@@ -47,6 +47,7 @@
 
 <script>
 import { loginUser } from '@/service/auth';
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -55,15 +56,7 @@ export default {
     };
   },
   computed: {
-    isEmailValid() {
-      return this.$store.state.emailValidText;
-    },
-    isPasswordValid() {
-      return this.$store.state.passwordValidText;
-    },
-    isLogin() {
-      return this.$store.getters.isLogin;
-    },
+    ...mapGetters('authStore', ['isLogin', 'isEmailValid', 'isPasswordValid']),
   },
   methods: {
     login(event) {
@@ -72,7 +65,7 @@ export default {
     },
     focusInput(event) {
       if (this.isEmailValid || this.isPasswordValid) {
-        this.$store.commit('CLEAR_INPUT', event.target.id);
+        this.$store.commit('authStore/CLEAR_INPUT', event.target.id);
       }
     },
   },
