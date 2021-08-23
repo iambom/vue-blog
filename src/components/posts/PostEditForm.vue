@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { imageUpload } from '@/service/imageUploader';
 export default {
   data() {
@@ -45,11 +46,16 @@ export default {
       isImageFile: false,
     };
   },
+  computed: {
+    ...mapState('postStore', {
+      postItem: state => state.postItem,
+    }),
+  },
   created() {
     // edit 페이지 로드 후 포스트의 고유 id를 이용해 저장 되어 있던 컨텐츠 불러오기
     const id = this.$route.params.id;
     this.$store.commit('postStore/GET_POSTITEM', id);
-    const postItem = this.$store.state.postItem;
+    const postItem = this.postItem;
     const { title, contents } = postItem;
     this.title = title;
     this.contents = contents;
@@ -86,14 +92,14 @@ export default {
     convertToHashTag() {
       this.contents.split(/(#[^\s]+)/g).map(value => {
         if (value.match(/#[^\s]+/)) {
-          this.$store.commit('postStore/postStore/SET_TAGS', value);
+          this.$store.commit('postStore/SET_TAGS', value);
         }
       });
     },
     submitForm() {
       // 포스트의 id, 작성자, 최초 게시날짜는 그대로 두고 수정한 부분만 다시 저장
       if (this.title && this.contents !== '') {
-        const { id, name, publishedAt } = this.$store.state.postItem;
+        const { id, name, publishedAt } = this.postItem;
         const editItem = {
           id,
           title: this.title,

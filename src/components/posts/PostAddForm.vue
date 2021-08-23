@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { imageUpload } from '@/service/imageUploader';
 export default {
   data() {
@@ -43,6 +44,11 @@ export default {
       contents: '',
       imageFileInfo: '',
     };
+  },
+  computed: {
+    ...mapState('authStore', {
+      username: state => state.user.username,
+    }),
   },
   methods: {
     // input 태그에 ref를 만들어 button을 클릭하면 숨긴 input에 접근 가능
@@ -60,13 +66,16 @@ export default {
         height,
       };
       this.imageFileInfo = imageFileInfo;
-      this.$store.commit('SET_IMAGE_FILE_NAME', this.imageFileInfo.fileName);
+      this.$store.commit(
+        'postStore/SET_IMAGE_FILE_NAME',
+        this.imageFileInfo.fileName,
+      );
     },
     // 해쉬태그(#) 구별하여 저장
     convertToHashTag() {
       this.contents.split(/(#[^\s]+)/g).map(value => {
         if (value.match(/#[^\s]+/)) {
-          this.$store.commit('SET_TAGS', value);
+          this.$store.commit('postStore/SET_TAGS', value);
         }
       });
     },
@@ -86,12 +95,12 @@ export default {
           id,
           title: this.title,
           contents: this.contents,
-          name: this.$store.state.user.username,
+          name: this.username,
           publishedAt,
           imageFileInfo: this.imageFileInfo,
         };
 
-        this.$store.commit('ADD_POSTITEM', newItem);
+        this.$store.commit('postStore/ADD_POSTITEM', newItem);
         this.$router.push('/');
       }
     },

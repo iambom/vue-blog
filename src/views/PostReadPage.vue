@@ -47,7 +47,7 @@
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import PostEditForm from '@/components/posts/PostEditForm';
 import Modal from '@/components/common/Modal.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 export default {
   name: 'PostReadPage',
   components: {
@@ -68,6 +68,9 @@ export default {
     };
   },
   computed: {
+    ...mapState('postStore', {
+      postItem: state => state.postItem,
+    }),
     ...mapGetters('postStore', {
       getData: 'getReadData',
     }),
@@ -75,7 +78,7 @@ export default {
       return this.mode === 'read';
     },
     // getData() {
-    //   return this.$store.getters.getReadData;
+    //   return this.$store.getters.postStore.getReadData;
     // },
     isLoading() {
       return this.$store.state.common.isLoading;
@@ -85,7 +88,7 @@ export default {
   watch: {
     getData(setItem) {
       if (setItem) {
-        const postItem = this.$store.state.postItem;
+        const postItem = this.postItem;
         this.title = postItem.title;
         this.contents = postItem.contents;
 
