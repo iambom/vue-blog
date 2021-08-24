@@ -4,7 +4,9 @@
       <loading-spinner v-if="isLoading"></loading-spinner>
 
       <template v-else>
-        <app-header v-if="isUserLogin" :routeName="routeName"></app-header>
+        <template v-if="isUserLogin">
+          <app-header :routeName="routeName"></app-header>
+        </template>
         <router-link to="/" v-if="showGoHomeBtn" class="btn-go-home"
           ><i class="fas fa-long-arrow-alt-left"></i> Go home</router-link
         >

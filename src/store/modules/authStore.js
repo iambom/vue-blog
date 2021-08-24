@@ -33,7 +33,6 @@ const authStore = {
       };
     },
     VALIDATE_INPUT(state, errorCode) {
-      console.log(errorCode);
       switch (errorCode) {
         case 'auth/invalid-email':
           state.passwordValidText = '';

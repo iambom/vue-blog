@@ -18,7 +18,6 @@ function signupUser(email, password, displayName) {
       store.commit('common/SHOW_MODAL', true);
     })
     .catch(error => {
-      console.log(error.code);
       store.commit('authStore/VALIDATE_INPUT', error.code);
     });
 }
@@ -34,6 +33,7 @@ function loginUser(loginType, email, password) {
     firebaseAuth
       .signInWithPopup(authProvider)
       .then(result => {
+        console.log('어디서 에러가 ?', result);
         const userData = {
           username: result.additionalUserInfo.profile.name,
           uid: result.user.uid,
@@ -58,6 +58,7 @@ function getProvider(providerName) {
 }
 
 function logoutUser() {
+  // store.commit('authStore/CLEAR_USER');
   firebaseAuth.signOut();
 }
 
@@ -86,8 +87,12 @@ function onAuthChange() {
         router.history.current.path !== '/login' &&
         router.history.current.path !== '/signup'
       ) {
+        store.commit('common/SET_LOADING', true);
+        console.log('1 : 로그인 하지 않음');
         store.commit('authStore/CLEAR_USER');
+        console.log('2 : CLEAR_USER');
         router.push('/login');
+        console.log('3 : /login');
       }
       store.commit('common/SET_LOADING', false);
     }
